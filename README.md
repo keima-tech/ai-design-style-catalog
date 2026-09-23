@@ -5,7 +5,7 @@
 AI（ChatGPT / Claude / Gemini / Cursor 等）にデザインを指示するための**スタイルカタログ**です。
 スタイルを選ぶとプレビューとプロンプトが表示され、コピーしてそのままAIに渡せます。
 
-🔗 **デモ**: https://yourname.github.io/ai-design-style-catalog/ ←(公開後にURLを書き換えてください)
+🔗 **デモ**: https://keima-tech.github.io/ai-design-style-catalog/
 
 ---
 
@@ -118,11 +118,3 @@ A. はい。モーダル内のテキストエリアは直接編集可能（編�
 
 **Q. 商用利用は？**
 A. MITライセンスの範囲で自由にご利用ください。生成プロンプトの利用に制限はありません。
-
-## License
-
-[MIT](LICENSE)
-
----
-
-*Made with 「このスタイルで」のひとことのために。*
