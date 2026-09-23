@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>デザインスタイルカタログ — ホームページ / Webアプリ / スライド対応</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%234f46e5'/><circle cx='23' cy='23' r='9' fill='white'/><rect x='36' y='14' width='16' height='16' rx='4' fill='%23ffd400'/><rect x='14' y='36' width='16' height='16' rx='8' fill='%23ff5c39'/><circle cx='44' cy='44' r='8' fill='%2322d3ee'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@300;500;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&family=M+PLUS+Rounded+1c:wght@500;800&family=Caveat:wght@600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root{ --ink:#17181c; --sub:#6b7080; --bg:#f6f6f3; --card:#fff; --line:#e7e6e0; --acc:#4f46e5; --warn:#b4232a; }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter','Noto Sans JP',sans-serif;line-height:1.6}
+.wrap{max-width:1200px;margin:0 auto;padding:40px 20px 80px}
+header .kicker{font-size:12px;letter-spacing:.25em;color:var(--acc);font-weight:700;text-transform:uppercase}
+header h1{font-size:clamp(24px,3.6vw,38px);margin:6px 0 10px;letter-spacing:-.02em}
+header .lead{color:var(--sub);max-width:720px;margin:0 0 10px;font-size:14px}
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:18px 0 6px}
+.howto div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:12.5px}
+.howto b{display:block;font-size:12.5px;margin-bottom:2px}
+.howto .step{display:inline-block;width:20px;height:20px;border-radius:50%;background:var(--acc);color:#fff;font-size:11px;text-align:center;line-height:20px;margin-right:6px}
+.doclabel{font-size:12.5px;font-weight:800;letter-spacing:.14em;color:var(--acc);margin:26px 0 10px;display:flex;align-items:center;gap:8px}
+.doclabel::after{content:"";flex:1;height:1px;background:var(--line)}
+.docbar{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.docbar button{position:relative;text-align:left;border:2px solid var(--line);background:var(--card);border-radius:16px;padding:16px 18px;cursor:pointer;font-family:inherit;transition:.15s;display:flex;gap:14px;align-items:center}
+.docbar button:hover{border-color:#c9c7bd;transform:translateY(-2px)}
+.docbar .dico{font-size:30px;line-height:1}
+.docbar b{display:block;font-size:16px;letter-spacing:.01em}
+.docbar small{display:block;font-size:11px;color:var(--sub);margin-top:3px}
+.docbar button.on{border-color:var(--acc);background:#f0f1ff;box-shadow:0 6px 18px rgba(79,70,229,.16)}
+.docbar button.on::after{content:"✓ 選択中";position:absolute;top:10px;right:12px;font-size:10px;font-weight:800;color:#fff;background:var(--acc);border-radius:999px;padding:2px 9px}
+@media(max-width:760px){.docbar{grid-template-columns:1fr}}
+.antiwrap{margin:16px 0 6px;border:1.5px solid #f0caca;background:#fff7f7;border-radius:14px;padding:10px 16px 12px}
+.antiwrap summary{cursor:pointer;font-weight:800;font-size:13.5px;display:flex;align-items:center;gap:9px;list-style:none}
+.antiwrap summary::-webkit-details-marker{display:none}
+.antiwrap summary::before{content:"🚫";font-size:16px}
+.antibadge{background:var(--warn);color:#fff;border-radius:999px;font-size:10.5px;padding:2px 10px;font-weight:700;white-space:nowrap}
+.antihint{font-size:11px;color:var(--sub);font-weight:500;margin-left:auto}
+.anti{display:grid;grid-template-columns:1fr 1fr;gap:7px 20px;padding:12px 2px 2px;font-size:12.5px}
+.anti label{display:flex;gap:8px;align-items:flex-start;cursor:pointer}
+.anti input{margin-top:3px;accent-color:var(--warn);flex:none}
+@media(max-width:760px){.anti{grid-template-columns:1fr}}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 22px;position:sticky;top:0;background:var(--bg);padding:12px 0;z-index:5}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font-size:12.5px;cursor:pointer;font-family:inherit;color:var(--sub)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.mixbtn{border:1.5px solid var(--acc);color:var(--acc);background:#fff;border-radius:999px;padding:7px 16px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit}
+.mixbtn:hover{background:var(--acc);color:#fff}
+#search{margin-left:auto;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px;font-size:13px;width:200px;font-family:inherit;outline:none}
+#search:focus{border-color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+.empty{color:var(--sub);text-align:center;padding:60px 0;grid-column:1/-1}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:.18s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(20,20,30,.10)}
+.card:focus-visible{outline:2px solid var(--acc)}
+.thumb{height:212px;overflow:hidden;position:relative;border-bottom:1px solid var(--line);flex:none;background:#fff}
+.thumb .mock{--mock-fs:8px;min-height:100%;border-radius:0;pointer-events:none}
+.cbody{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.crow{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.crow h3{margin:0;font-size:15.5px}
+.cen{font-size:11px;color:var(--sub);letter-spacing:.06em;text-transform:uppercase;margin-top:-4px}
+.cat{font-size:10.5px;padding:3px 9px;border-radius:999px;white-space:nowrap;font-weight:600}
+.cat-minimal{background:#eef2f7;color:#3d5a80}.cat-trend{background:#f3e8ff;color:#7c3aed}
+.cat-bold{background:#ffedd5;color:#c2410c}.cat-premium{background:#fef3c7;color:#92400e}
+.cat-natural{background:#dcfce7;color:#15803d}
+.cdesc{font-size:12.5px;color:var(--sub);margin:2px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:6px}
+.tags span{font-size:10.5px;color:var(--sub);background:var(--bg);border-radius:5px;padding:2px 7px}
+.modal{position:fixed;inset:0;z-index:50;display:none}
+.modal.open{display:block}
+.backdrop{position:absolute;inset:0;background:rgba(15,15,20,.55);backdrop-filter:blur(3px)}
+.mbox{position:relative;max-width:1080px;margin:4vh auto;background:var(--card);border-radius:18px;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.15fr 1fr;animation:pop .22s ease}
+.mbox.mixbox{grid-template-columns:1fr;max-width:820px}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.mleft{padding:18px;background:#efece5;border-radius:18px 0 0 18px;display:flex;flex-direction:column;gap:10px}
+.docbadge{align-self:flex-start;background:#17181c;color:#fff;border-radius:999px;font-size:11px;font-weight:700;padding:4px 12px}
+.pframe{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.pframe .mock{--mock-fs:12.5px}
+.mleft .note{font-size:10.5px;color:#8b8779;text-align:center}
+.mright{padding:24px 26px 28px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.mright h2{margin:0;font-size:21px}
+.mright h2 small{display:block;font-size:11px;color:var(--sub);letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-top:2px}
+.mdesc{font-size:13px;color:var(--sub);margin:0}
+.ainote{font-size:12px;background:#fff8e6;border:1px solid #f0dca8;color:#7a5b12;border-radius:8px;padding:8px 11px;margin:0}
+.close{position:absolute;top:12px;right:14px;z-index:2;border:none;background:rgba(0,0,0,.06);width:32px;height:32px;border-radius:50%;font-size:17px;cursor:pointer;line-height:1}
+.close:hover{background:rgba(0,0,0,.12)}
+.fields{display:flex;gap:8px;flex-wrap:wrap}
+.fields label{flex:1;min-width:140px;font-size:11px;color:var(--sub);font-weight:700}
+.fields input{width:100%;margin-top:3px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;font-family:inherit;outline:none}
+.fields input:focus{border-color:var(--acc)}
+textarea.pbox{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:11.8px;line-height:1.7;font-family:ui-monospace,'Space Mono',monospace;resize:vertical;min-height:280px;outline:none;background:#fbfbf9}
+textarea.pbox:focus{border-color:var(--acc)}
+.copybtn{border:none;background:var(--ink);color:#fff;border-radius:10px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s;width:100%}
+.copybtn:hover{background:var(--acc)}
+.copybtn.done{background:#16a34a}
+.hint{font-size:11px;color:var(--sub);margin:0}
+.mixhead h2{margin:0 0 4px;font-size:20px}
+.mixhead p{font-size:12.5px;color:var(--sub);margin:0 0 14px}
+.mixgrid{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin-bottom:12px}
+.mixcol>label{font-size:11px;font-weight:700;color:var(--sub)}
+.mixcol select{width:100%;margin-top:4px;padding:8px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:13px;background:#fff}
+.mixplus{font-size:20px;font-weight:800;color:var(--sub);padding-top:18px}
+.mixprev{position:relative;height:140px;overflow:hidden;border:1px solid var(--line);border-radius:10px;margin-top:6px;background:#fff}
+.mixprev .mock{--mock-fs:7px;min-height:100%;border-radius:0}
+.mixels{border:1px solid var(--line);border-radius:10px;padding:8px 12px;display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12.5px;margin:0 0 12px}
+.mixels legend{font-size:11px;font-weight:700;color:var(--sub);padding:0 6px}
+.mixels label{display:flex;gap:5px;align-items:center;cursor:pointer}
+@media(max-width:900px){.mbox{grid-template-columns:1fr;margin:2vh 10px}.mleft{border-radius:18px 18px 0 0}.mixgrid{grid-template-columns:1fr}.mixplus{padding:0}}
+footer{margin-top:46px;font-size:12px;color:var(--sub);text-align:center;line-height:1.9}
+.mock{--fg:#111;--bg:#fff;--muted:#888;--accent:#111;--accent-fg:#fff;--card:#fff;--line:#e5e5e5;--visual:#eee;--r:12px;
+  font-size:var(--mock-fs,10px);font-family:'Inter','Noto Sans JP',sans-serif;color:var(--fg);background:var(--bg);
+  width:100%;padding:1.4em;display:flex;flex-direction:column;gap:1.3em;overflow:hidden}
+.mock *{margin:0;box-sizing:border-box}
+.m-top{display:flex;align-items:center;justify-content:space-between;gap:1em}
+.m-brand{font-weight:800;font-size:1.05em;letter-spacing:.08em}
+.m-menu{display:flex;gap:1.3em;font-size:.72em;color:var(--muted)}
+.m-cta{font-size:.7em;padding:.55em 1.1em;border-radius:999px;background:var(--accent);color:var(--accent-fg);font-weight:700;white-space:nowrap}
+.m-kicker{display:block;font-size:.68em;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.5em}
+.m-title{font-size:2.2em;line-height:1.18;font-weight:800;letter-spacing:-.01em}
+.m-sub{font-size:.78em;color:var(--muted);margin-top:.6em;line-height:1.6}
+.m-actions{display:flex;gap:.7em;margin-top:1.1em;flex-wrap:wrap}
+.m-btn{font-size:.72em;padding:.65em 1.35em;border-radius:8px;font-weight:600;border:1.5px solid var(--line);color:var(--fg);background:transparent;white-space:nowrap}
+.m-btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.m-hero{display:flex;gap:1.4em;align-items:center}
+.m-hero-text{flex:1.25;min-width:0}
+.m-hero-visual{flex:1;aspect-ratio:4/3;border-radius:var(--r);background:var(--visual);min-width:0}
+.m-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.9em}
+.m-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:.9em;display:flex;flex-direction:column;gap:.45em}
+.m-card b{font-size:.78em}
+.m-card span{font-size:.66em;color:var(--muted);line-height:1.55}
+.m-dot{width:1.7em;height:1.7em;border-radius:7px;background:var(--accent);flex:none}
+.m-app{padding:1.1em}
+.m-appbody{display:flex;gap:1em;flex:1;min-height:0}
+.m-side{width:24%;display:flex;flex-direction:column;gap:.55em;padding:.9em;background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+.m-snav{font-size:.66em;color:var(--muted);padding:.5em .8em;border-radius:calc(var(--r)*.6);font-weight:600}
+.m-snav.on{background:var(--accent);color:var(--accent-fg)}
+.m-main{flex:1;display:flex;flex-direction:column;gap:.85em;min-width:0}
+.m-main .m-top .m-kicker{margin-bottom:0}
+.m-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.75em}
+.m-stat b{font-size:1.02em;letter-spacing:-.01em}
+.m-stat span{font-size:.58em}
+.m-row{display:grid;grid-template-columns:1.5fr 1fr;gap:.75em;flex:1;min-height:0}
+.m-chart{display:flex;align-items:flex-end;gap:.45em;padding:.8em}
+.m-chart i{display:block;flex:1;background:var(--accent);border-radius:3px 3px 0 0;opacity:.9}
+.m-chart i:nth-child(1){height:38%}.m-chart i:nth-child(2){height:55%}.m-chart i:nth-child(3){height:44%}.m-chart i:nth-child(4){height:70%}
+.m-chart i:nth-child(5){height:58%}.m-chart i:nth-child(6){height:86%}.m-chart i:nth-child(7){height:64%}.m-chart i:nth-child(8){height:92%}
+.m-list{display:flex;flex-direction:column;gap:.55em;padding:.8em}
+.m-list i{display:block;height:1.1em;background:var(--line);border-radius:4px}
+.m-list i:nth-child(2){width:82%}.m-list i:nth-child(3){width:64%}.m-list i:nth-child(4){width:74%}
+.m-slide{position:relative;aspect-ratio:16/9;padding:1.8em 2em;justify-content:space-between;gap:.6em}
+.m-slide .m-title{font-size:2.7em;max-width:64%}
+.m-slide .m-sub{margin-top:.4em}
+.m-slidetop{display:flex;justify-content:space-between;align-items:center}
+.m-slidefoot{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:.7em;font-size:.64em;color:var(--muted);letter-spacing:.08em}
+.m-slidedeco{position:absolute;right:6%;top:16%;width:23%;flex:none;aspect-ratio:1}
+.minimal{--muted:#9a9a9a;--visual:#f2f2f2;--r:0px}
+.minimal .m-card,.minimal .m-btn,.minimal .m-cta,.minimal .m-hero-visual,.minimal .m-dot,.minimal .m-side,.minimal .m-snav{border-radius:0}
+.minimal .m-title{font-weight:600;letter-spacing:-.02em}.minimal .m-cta{background:#111}
+.swiss{--accent:#e3000f;--line:#111;--muted:#666;--r:0px;--visual:linear-gradient(135deg,#e3000f 0 45%,#111 45% 70%,#f0f0f0 70%)}
+.swiss .m-title{text-transform:uppercase;font-size:2.5em;letter-spacing:-.03em}
+.swiss .m-menu,.swiss .m-kicker{text-transform:uppercase;letter-spacing:.15em}
+.swiss .m-cards .m-card{border-radius:0;border:none;border-top:3px solid #111;counter-increment:sw}.swiss .m-cards{counter-reset:sw}
+.swiss .m-cards .m-card b::before{content:"0" counter(sw) " — ";color:#e3000f}
+.swiss .m-btn,.swiss .m-cta,.swiss .m-hero-visual,.swiss .m-dot,.swiss .m-side,.swiss .m-snav,.swiss .m-stat,.swiss .m-chart,.swiss .m-list{border-radius:0}
+.corporate{--bg:#f4f7fb;--fg:#1c2b3a;--muted:#5f6f80;--accent:#1f5eff;--line:#e2e9f2;--r:10px;--visual:linear-gradient(135deg,#dbe7ff,#b9d2ff)}
+.corporate .m-card,.corporate .m-side,.corporate .m-chart,.corporate .m-list{box-shadow:0 1px 4px rgba(16,42,84,.08)}
+.bigtype{--muted:#777;--visual:#f4f4f4;--r:0px}
+.bigtype .m-title{font-size:3em;line-height:1;letter-spacing:-.04em}
+.bigtype .m-title em{font-style:normal;background:linear-gradient(transparent 62%,#ffe600 62%)}
+.bigtype .m-kicker{color:#0a0a0a;font-weight:700}
+.bigtype .m-card,.bigtype .m-btn,.bigtype .m-cta,.bigtype .m-hero-visual,.bigtype .m-side,.bigtype .m-snav{border-radius:0}
+.glass{--fg:#fff;--muted:rgba(255,255,255,.78);--accent:#fff;--accent-fg:#4326c9;--line:rgba(255,255,255,.35);--r:16px;background:radial-gradient(circle at 15% 20%,#ff6ec4 0 16%,transparent 42%),radial-gradient(circle at 85% 12%,#38bdf8 0 18%,transparent 45%),radial-gradient(circle at 72% 92%,#a855f7 0 24%,transparent 52%),linear-gradient(135deg,#5b4bff,#8a3ffc)}
+.glass .m-card,.glass .m-hero-visual,.glass .m-side,.glass .m-chart,.glass .m-list{background:rgba(255,255,255,.14);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.3);border-radius:var(--r)}
+.glass .m-card span,.glass .m-snav,.glass .m-stat span{color:rgba(255,255,255,.75)}
+.glass .m-btn{border-color:rgba(255,255,255,.55);color:#fff}.glass .m-dot{background:rgba(255,255,255,.65)}
+.glass .m-list i{background:rgba(255,255,255,.3)}
+.neumorph{--bg:#e4e9f0;--fg:#5a6478;--muted:#8b94a7;--accent:#7b8cff;--card:#e4e9f0;--line:#d5dbe5;--r:16px;--visual:#e4e9f0}
+.neumorph .m-card,.neumorph .m-hero-visual,.neumorph .m-dot,.neumorph .m-side,.neumorph .m-chart,.neumorph .m-list{border:none;box-shadow:5px 5px 12px #c9ced8,-5px -5px 12px #fff;border-radius:var(--r)}
+.neumorph .m-btn{border:none;background:#e4e9f0;color:#5a6478;box-shadow:3px 3px 7px #c9ced8,-3px -3px 7px #fff;border-radius:10px}
+.neumorph .m-btn.primary{background:#7b8cff;color:#fff}.neumorph .m-cta{box-shadow:3px 3px 7px #c9ced8,-3px -3px 7px #fff}
+.neumorph .m-list i{background:#d5dbe5;box-shadow:2px 2px 4px #c9ced8,-2px -2px 4px #fff}
+.bento{--bg:#f6f5f1;--fg:#1d1c1a;--muted:#6f6c64;--accent:#ff5c39;--line:#e8e6df;--r:14px;font-family:'Space Grotesk','Noto Sans JP',sans-serif}
+.bento .m-hero-visual{background:linear-gradient(135deg,#ffe9ad,#ff5c39)}
+.bento .m-cards .m-card:nth-child(1){grid-column:span 2;background:#ff5c39;color:#fff;border:none}
+.bento .m-cards .m-card:nth-child(1) span{color:#ffe2d9}.bento .m-cards .m-card:nth-child(1) .m-dot{background:rgba(255,255,255,.35)}
+.bento .m-cards .m-card:nth-child(2){background:#ffe9ad;border:none}.bento .m-cards .m-card:nth-child(3){background:#dce9ff;border:none}
+.clay{--bg:#efe9fb;--fg:#5b4a8a;--muted:#8d7fbc;--accent:#ff8fab;--card:#f6f1ff;--line:#e0d6f5;--r:20px;--visual:#f6f1ff;font-family:'M PLUS Rounded 1c','Noto Sans JP',sans-serif}
+.clay .m-card,.clay .m-hero-visual,.clay .m-side,.clay .m-chart,.clay .m-list{border:none;border-radius:var(--r);box-shadow:5px 5px 12px #d6cbea,-5px -5px 12px #fff,inset 2px 2px 5px #fff,inset -2px -2px 5px #e6dcf8}
+.clay .m-btn{border:none;border-radius:999px;background:#fff;box-shadow:3px 3px 7px #d6cbea,-3px -3px 7px #fff;color:#5b4a8a}
+.clay .m-btn.primary{background:#ff8fab;color:#fff}.clay .m-cta{border-radius:999px;box-shadow:3px 3px 7px #d6cbea}.clay .m-dot{border-radius:50%}
+.aurora{--fg:#fff;--muted:rgba(255,255,255,.8);--accent:#fff;--accent-fg:#6d28d9;--line:rgba(255,255,255,.4);--r:16px;background:linear-gradient(120deg,#4f46e5,#9333ea 45%,#ec4899 78%,#f97316)}
+.aurora .m-card,.aurora .m-side,.aurora .m-chart,.aurora .m-list{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25)}
+.aurora .m-card span,.aurora .m-snav{color:rgba(255,255,255,.75)}
+.aurora .m-hero-visual{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25)}
+.aurora .m-btn{border-color:rgba(255,255,255,.6);color:#fff}.aurora .m-dot{background:rgba(255,255,255,.7)}
+.aurora .m-list i{background:rgba(255,255,255,.3)}
+.y2k{--bg:#eaf3ff;--fg:#3a4a6b;--muted:#7b8aa8;--accent:#ff5eb4;--line:#cfe2ff;--r:18px;font-family:'Space Grotesk','Noto Sans JP',sans-serif;background:linear-gradient(160deg,#eaf3ff,#fdeaff 60%,#e0f4ff)}
+.y2k .m-title{background:linear-gradient(180deg,#7ec8ff 0%,#f0f7ff 45%,#a8b8d8 55%,#ffd6f2 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.y2k .m-kicker::before{content:"✦ ";color:#ff5eb4}
+.y2k .m-card,.y2k .m-side,.y2k .m-chart,.y2k .m-list{border:1.5px solid #fff;box-shadow:0 6px 16px rgba(126,168,255,.35)}
+.y2k .m-btn{border-radius:999px;border:1.5px solid #9cc4ff}
+.y2k .m-btn.primary,.y2k .m-cta{background:linear-gradient(90deg,#38b6ff,#ff5eb4);border:none;color:#fff}
+.y2k .m-hero-visual{background:linear-gradient(135deg,#a8d8ff,#f4c2ff);box-shadow:inset 0 0 0 3px #fff}
+.y2k .m-dot{border-radius:50%;background:linear-gradient(135deg,#38b6ff,#ff5eb4)}
+.iso{--bg:#f3f5fb;--fg:#232946;--muted:#6b7290;--accent:#5b5fe9;--line:#e3e7f2;--r:14px;font-family:'Space Grotesk','Noto Sans JP',sans-serif}
+.iso .m-hero-visual{background:linear-gradient(135deg,#eef1fc,#dfe4f7);display:flex;align-items:center;justify-content:center}
+.iso .m-hero-visual::before{content:"";width:55%;aspect-ratio:1;clip-path:polygon(50% 2%,93% 26%,93% 74%,50% 98%,7% 74%,7% 26%);background:conic-gradient(from 30deg,#9a9ef7 0 120deg,#5b5fe9 0 240deg,#3b3fb0 0)}
+.iso .m-card,.iso .m-side,.iso .m-chart,.iso .m-list{box-shadow:0 6px 16px rgba(91,95,233,.12)}
+.iso .m-dot{background:linear-gradient(135deg,#9a9ef7,#3b3fb0);border-radius:8px}
+.brutalism{--bg:#f7f3e9;--fg:#111;--muted:#555;--accent:#6c4df6;--line:#111;--r:0px;font-family:'Space Mono','Noto Sans JP',monospace}
+.brutalism .m-title{text-transform:uppercase;font-size:2.3em}
+.brutalism .m-menu,.brutalism .m-kicker{text-transform:uppercase}
+.brutalism .m-card,.brutalism .m-side,.brutalism .m-chart,.brutalism .m-list{border:2px solid #111;border-radius:0;box-shadow:4px 4px 0 #111}
+.brutalism .m-btn{border:2px solid #111;border-radius:0;box-shadow:3px 3px 0 #111;font-weight:700}
+.brutalism .m-cta{background:#ffd400;color:#111;border:2px solid #111;border-radius:0;box-shadow:3px 3px 0 #111}
+.brutalism .m-hero-visual{border:2px solid #111;border-radius:0;background:repeating-linear-gradient(45deg,#111 0 9px,#ffd400 9px 18px)}
+.brutalism .m-dot{border-radius:0;background:#111}
+.brutalism .m-snav.on{box-shadow:2px 2px 0 #111}
+.vaporwave{--bg:#1b0b3b;--fg:#ffe9fb;--muted:#c79be8;--accent:#ff5ce1;--card:rgba(255,255,255,.06);--line:rgba(255,92,225,.4);--r:8px;font-family:'Space Mono','Noto Sans JP',monospace;background:linear-gradient(180deg,#241055,#1b0b3b 60%,#12062b)}
+.vaporwave .m-title{background:linear-gradient(90deg,#ff5ce1,#00f5ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-transform:uppercase}
+.vaporwave .m-card,.vaporwave .m-side,.vaporwave .m-chart,.vaporwave .m-list{border:1px solid rgba(255,92,225,.35);box-shadow:0 0 12px rgba(255,92,225,.15)}
+.vaporwave .m-card span,.vaporwave .m-snav{color:#c79be8}
+.vaporwave .m-hero-visual{background:radial-gradient(circle at 50% 38%,#ff9a3d 0 13%,#ff5ce1 13% 26%,transparent 26%),repeating-linear-gradient(rgba(0,245,255,.3) 0 1px,transparent 1px 9px),repeating-linear-gradient(90deg,rgba(0,245,255,.3) 0 1px,transparent 1px 9px),linear-gradient(#2a1055,#170a33)}
+.vaporwave .m-btn{border-color:#00f5ff;color:#00f5ff}
+.vaporwave .m-btn.primary{background:linear-gradient(90deg,#ff5ce1,#8a5cff);border:none;color:#fff;box-shadow:0 0 10px rgba(255,92,225,.5)}
+.vaporwave .m-cta{background:#00f5ff;color:#12062b;box-shadow:0 0 10px rgba(0,245,255,.5)}
+.vaporwave .m-dot{background:#00f5ff;box-shadow:0 0 8px #00f5ff}
+.retro{--bg:#f3e9d2;--fg:#41301c;--muted:#8a7355;--accent:#d96c2c;--card:#ead9b8;--line:#cbb48c;--r:12px}
+.retro .m-title{font-family:'Playfair Display',serif}.retro .m-title em{color:#d96c2c}
+.retro .m-card,.retro .m-side,.retro .m-chart,.retro .m-list{border:2px solid #cbb48c}
+.retro .m-hero-visual{background:radial-gradient(circle at 50% 110%,#d96c2c 0 35%,#7a8450 35% 60%,#f3e9d2 60%);border-radius:12px 12px 60px 60px}
+.retro .m-dot{background:#7a8450}
+.tech{--bg:#060a12;--fg:#d7e3f4;--muted:#6b7f99;--accent:#22d3ee;--accent-fg:#04222a;--card:#0b1220;--line:rgba(34,211,238,.3);--r:6px;font-family:'Space Grotesk','Noto Sans JP',sans-serif;background:repeating-linear-gradient(rgba(34,211,238,.05) 0 1px,transparent 1px 22px),repeating-linear-gradient(90deg,rgba(34,211,238,.05) 0 1px,transparent 1px 22px),#060a12}
+.tech .m-kicker{color:#22d3ee;letter-spacing:.25em}
+.tech .m-card span,.tech .m-snav{color:#6b7f99}
+.tech .m-hero-visual{background:repeating-linear-gradient(rgba(34,211,238,.2) 0 1px,transparent 1px 11px),repeating-linear-gradient(90deg,rgba(34,211,238,.2) 0 1px,transparent 1px 11px),#081420}
+.tech .m-btn.primary,.tech .m-cta{clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);box-shadow:0 0 12px rgba(34,211,238,.4)}
+.tech .m-btn{border-radius:0;border-color:rgba(34,211,238,.4)}
+.tech .m-dot{border-radius:2px;box-shadow:0 0 8px rgba(34,211,238,.6)}
+.memphis{--bg:#fdfbf4;--fg:#1a1a1a;--muted:#666;--accent:#ff4d6d;--line:#1a1a1a;--r:0px;font-family:'Space Grotesk','Noto Sans JP',sans-serif}
+.memphis .m-hero-visual{border:2.5px solid #1a1a1a;border-radius:0;background:radial-gradient(circle at 20% 25%,#ffd400 0 12%,transparent 13%),radial-gradient(circle at 75% 70%,#2ec4b6 0 16%,transparent 17%),conic-gradient(from 45deg at 55% 25%,#ff4d6d 0 25%,transparent 0),repeating-linear-gradient(45deg,#4361ee 0 3px,transparent 3px 10px),#fdfbf4}
+.memphis .m-cards .m-card{border:2.5px solid #1a1a1a;border-radius:0;box-shadow:5px 5px 0 #ffd400}
+.memphis .m-cards .m-card:nth-child(2){box-shadow:5px 5px 0 #2ec4b6}.memphis .m-cards .m-card:nth-child(3){box-shadow:5px 5px 0 #ff4d6d}
+.memphis .m-side,.memphis .m-chart,.memphis .m-list{border:2.5px solid #1a1a1a;border-radius:0;box-shadow:4px 4px 0 #ffd400}
+.memphis .m-btn{border:2.5px solid #1a1a1a;border-radius:999px;font-weight:700;box-shadow:3px 3px 0 #1a1a1a}
+.memphis .m-btn.primary{background:#ff4d6d;color:#fff}
+.memphis .m-cta{background:#ffd400;color:#1a1a1a;border:2.5px solid #1a1a1a;box-shadow:3px 3px 0 #1a1a1a}
+.memphis .m-dot{background:#4361ee;border:2px solid #1a1a1a;border-radius:50%}
+.memphis .m-cards .m-card:nth-child(2) .m-dot{background:#ffd400}.memphis .m-cards .m-card:nth-child(3) .m-dot{background:#2ec4b6}
+.cyber{--bg:#0a0a0d;--fg:#e8f7ff;--muted:#7a8ba0;--accent:#fcee0a;--accent-fg:#0a0a0d;--card:#12131a;--line:#26283a;--r:0px;font-family:'Space Mono','Noto Sans JP',monospace;background:linear-gradient(rgba(252,238,10,.04) 0 1px,transparent 1px 26px),linear-gradient(90deg,rgba(255,0,140,.05) 0 1px,transparent 1px 26px),#0a0a0d}
+.cyber .m-title{font-weight:700;text-transform:uppercase;color:#fcee0a;text-shadow:2px 0 #ff008c,-2px 0 #00e5ff}
+.cyber .m-kicker{color:#ff008c}
+.cyber .m-cards .m-card{border:1px solid #26283a;border-left:3px solid #fcee0a;border-radius:0;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
+.cyber .m-cards .m-card:nth-child(2){border-left-color:#ff008c}.cyber .m-cards .m-card:nth-child(3){border-left-color:#00e5ff}
+.cyber .m-side,.cyber .m-chart,.cyber .m-list{border:1px solid #26283a;border-radius:0;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
+.cyber .m-hero-visual{border-radius:0;border:1px solid rgba(252,238,10,.35);background:linear-gradient(135deg,#1a0a14,#0d1a22);box-shadow:inset 0 0 20px rgba(255,0,140,.25)}
+.cyber .m-btn{border-radius:0;border-color:#fcee0a;color:#fcee0a}
+.cyber .m-btn.primary{background:#fcee0a;color:#0a0a0d;font-weight:700}
+.cyber .m-cta{border-radius:0;box-shadow:0 0 12px rgba(252,238,10,.4)}
+.cyber .m-dot{border-radius:0;box-shadow:0 0 8px rgba(252,238,10,.7)}
+.pixel{--bg:#1a1c2c;--fg:#f4f4f4;--muted:#94b0c2;--accent:#38b764;--card:#262b44;--line:#333c57;--r:0px;font-family:'Space Mono','Noto Sans JP',monospace}
+.pixel .m-brand,.pixel .m-kicker{font-family:'Press Start 2P',monospace}
+.pixel .m-brand{font-size:.62em}.pixel .m-kicker{font-size:.5em;color:#38b764}
+.pixel .m-title{text-transform:uppercase}
+.pixel .m-card,.pixel .m-side,.pixel .m-chart,.pixel .m-list{border-radius:0;border:2px solid #333c57;box-shadow:4px 4px 0 #0f111f}
+.pixel .m-hero-visual{border-radius:0;border:2px solid #333c57;background:repeating-conic-gradient(#262b44 0% 25%,#1a1c2c 0% 50%) 50%/16px 16px}
+.pixel .m-btn{border-radius:0;border:2px solid #94b0c2;box-shadow:3px 3px 0 #0f111f}
+.pixel .m-btn.primary{background:#38b764;border-color:#38b764;color:#0f111f}
+.pixel .m-cta{border-radius:0;background:#b13e53;box-shadow:3px 3px 0 #0f111f}
+.pixel .m-dot{border-radius:0;background:#ef7d57;box-shadow:2px 2px 0 #0f111f}
+.maximal{--bg:#7a1f3d;--fg:#ffe9c9;--muted:#e0b08f;--accent:#f4a81d;--card:rgba(122,31,61,.6);--line:#c46a5a;--r:14px;font-family:'Playfair Display','Noto Sans JP',serif;background:radial-gradient(circle at 20% 30%,rgba(244,168,29,.25) 0 12%,transparent 13%),radial-gradient(circle at 80% 70%,rgba(46,160,140,.3) 0 15%,transparent 16%),repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0 8px,transparent 8px 16px),#7a1f3d}
+.maximal .m-title{font-weight:800;font-size:2.5em}.maximal .m-title em{color:#f4a81d}
+.maximal .m-cards .m-card{border:2px solid #f4a81d}
+.maximal .m-cards .m-card:nth-child(2){border-color:#2ea08c;border-radius:2px 18px 2px 18px}
+.maximal .m-cards .m-card:nth-child(3){border-color:#ff6f61;border-radius:18px 2px 18px 2px}
+.maximal .m-card span,.maximal .m-snav{color:#e0b08f}
+.maximal .m-hero-visual{border:3px double #f4a81d;background:repeating-linear-gradient(135deg,#922b4e 0 10px,#7a1f3d 10px 20px);border-radius:50%}
+.maximal .m-btn{border-color:#ffe9c9;color:#ffe9c9;border-radius:999px}
+.maximal .m-btn.primary{background:#f4a81d;border-color:#f4a81d;color:#4a1226}
+.maximal .m-cta{background:#2ea08c}.maximal .m-dot{border-radius:50%}
+.maximal .m-cards .m-card:nth-child(2) .m-dot{background:#2ea08c}.maximal .m-cards .m-card:nth-child(3) .m-dot{background:#ff6f61}
+.bauhaus{--bg:#f5f0e6;--fg:#1a1a1a;--muted:#666;--accent:#e3000f;--card:#fff;--line:#1a1a1a;--r:0px;font-family:'Space Grotesk','Noto Sans JP',sans-serif}
+.bauhaus .m-title{text-transform:uppercase;letter-spacing:.02em}
+.bauhaus .m-hero-visual{border:2px solid #1a1a1a;border-radius:0;background:radial-gradient(circle at 32% 34%,#e3000f 0 24%,transparent 25%),conic-gradient(from 90deg at 78% 78%,#0057b8 0 25%,transparent 0),linear-gradient(#f2b705,#f2b705) 74% 18%/38% 12% no-repeat,#f5f0e6}
+.bauhaus .m-cards .m-card{border:2px solid #1a1a1a;border-radius:0}
+.bauhaus .m-cards .m-card:nth-child(1){background:#e3000f;color:#fff;border-color:#1a1a1a}
+.bauhaus .m-cards .m-card:nth-child(1) span{color:#ffe1e1}
+.bauhaus .m-cards .m-card:nth-child(2){background:#f2b705}
+.bauhaus .m-cards .m-card:nth-child(3){background:#0057b8;color:#fff}
+.bauhaus .m-cards .m-card:nth-child(3) span{color:#dce9ff}
+.bauhaus .m-cards .m-card:nth-child(1) .m-dot{background:#fff}
+.bauhaus .m-cards .m-card:nth-child(2) .m-dot{background:#1a1a1a}
+.bauhaus .m-cards .m-card:nth-child(3) .m-dot{background:#f2b705}
+.bauhaus .m-side,.bauhaus .m-chart,.bauhaus .m-list{border:2px solid #1a1a1a;border-radius:0}
+.bauhaus .m-snav{border-radius:0}.bauhaus .m-snav.on{background:#0057b8}
+.bauhaus .m-btn{border:2px solid #1a1a1a;border-radius:0}
+.bauhaus .m-btn.primary{background:#e3000f;color:#fff}
+.bauhaus .m-cta{border-radius:0;background:#f2b705;color:#1a1a1a;border:2px solid #1a1a1a}
+@keyframes blink{50%{opacity:0}}
+.terminal{--bg:#0d1117;--fg:#4af626;--muted:#58a06a;--accent:#4af626;--accent-fg:#0d1117;--card:#12161c;--line:#1f3a24;--r:6px;font-family:'Space Mono','Noto Sans JP',monospace;background:repeating-linear-gradient(rgba(74,246,38,.05) 0 2px,transparent 2px 4px),#0d1117}
+.terminal .m-title{font-weight:700}
+.terminal .m-title em{font-style:normal;color:#0d1117;background:#4af626;padding:0 .15em}
+.terminal .m-title em::after{content:"_";color:#4af626;background:transparent;animation:blink 1s steps(1) infinite}
+.terminal .m-kicker::before{content:"$ ";color:#4af626}
+.terminal .m-card,.terminal .m-side,.terminal .m-chart,.terminal .m-list{border:1px solid #1f3a24;background:#12161c}
+.terminal .m-card b::before{content:"> ";color:#4af626}
+.terminal .m-card span,.terminal .m-snav,.terminal .m-sub,.terminal .m-menu{color:#58a06a}
+.terminal .m-hero-visual{border:1px solid #1f3a24;background:repeating-linear-gradient(rgba(74,246,38,.18) 0 1px,transparent 1px 8px),#12161c;box-shadow:inset 0 0 18px rgba(74,246,38,.15)}
+.terminal .m-btn{border:1px solid #4af626;color:#4af626;border-radius:4px}
+.terminal .m-btn.primary{background:#4af626;color:#0d1117;font-weight:700}
+.terminal .m-cta{border-radius:4px}
+.terminal .m-dot{border-radius:2px}
+.terminal .m-list i{background:#1f3a24}
+.darklux{--bg:#0b0b0f;--fg:#ece5d3;--muted:#98907c;--accent:#c8a24b;--card:#15151c;--line:#2a2a33;--r:10px;--visual:radial-gradient(circle at 30% 30%,#4a3b18,#101015 70%)}
+.darklux .m-title{font-family:'Playfair Display',serif;font-weight:600}
+.darklux .m-card span,.darklux .m-snav{color:#98907c}.darklux .m-hero-visual{border:1px solid #3a3118}
+.darklux .m-cta{box-shadow:0 0 1.2em rgba(200,162,75,.35)}
+.editorial{--bg:#fbfaf7;--fg:#1a1a1a;--muted:#777;--accent:#b03a2e;--card:transparent;--line:#1a1a1a;--r:0px;--visual:linear-gradient(160deg,#e9e3d5,#cfc6b2)}
+.editorial .m-title{font-family:'Playfair Display',serif;font-size:2.6em}.editorial .m-title em{color:#b03a2e}
+.editorial .m-kicker{font-family:'Playfair Display',serif;font-style:italic;text-transform:none;letter-spacing:.05em;color:#b03a2e}
+.editorial .m-cards .m-card{border:none;border-top:1px solid #1a1a1a;border-radius:0;padding-top:.8em}
+.editorial .m-side,.editorial .m-chart,.editorial .m-list{border-radius:0;border-color:#1a1a1a}
+.editorial .m-btn,.editorial .m-cta,.editorial .m-hero-visual,.editorial .m-dot{border-radius:0}
+.deco{--bg:#12211c;--fg:#f0e6d2;--muted:#a2b3a5;--accent:#cfa14e;--card:#182b24;--line:#2e443b;--r:0px}
+.deco .m-brand,.deco .m-title,.deco .m-kicker{font-family:'Playfair Display',serif;text-transform:uppercase;letter-spacing:.12em}
+.deco .m-title{font-weight:600}.deco .m-title em{color:#cfa14e}
+.deco .m-card,.deco .m-side,.deco .m-chart,.deco .m-list{border:1px solid rgba(207,161,78,.35);border-radius:0}
+.deco .m-hero-visual{border:1px solid #cfa14e;border-radius:0;background:repeating-conic-gradient(from 0deg at 50% 100%,rgba(207,161,78,.22) 0 10deg,transparent 10deg 20deg),linear-gradient(#1d3a30,#12211c)}
+.deco .m-btn{border-radius:0;border-color:#cfa14e;color:#cfa14e}
+.deco .m-btn.primary{background:#cfa14e;color:#12211c}
+.deco .m-cta{border-radius:0}.deco .m-dot{background:#cfa14e;transform:rotate(45deg);border-radius:2px}
+.organic{--bg:#f4f1e6;--fg:#3a4433;--muted:#7d8570;--accent:#7a9163;--card:#fdfcf6;--line:#dfe0cd;--r:16px}
+.organic .m-title{font-family:'Playfair Display',serif;font-weight:600}
+.organic .m-hero-visual{border-radius:58% 42% 38% 62%/55% 48% 52% 45%;background:radial-gradient(circle at 35% 30%,#b9c99e,#7a9163)}
+.organic .m-cards .m-card{border-radius:20px 8px 20px 8px}
+.organic .m-btn,.organic .m-cta{border-radius:999px}.organic .m-dot{border-radius:50% 50% 50% 0}
+.ma{--bg:#faf9f6;--fg:#4c4842;--muted:#9a948a;--accent:#8a8378;--card:transparent;--line:#e7e3da;--r:2px;--visual:#efece3;gap:1.8em}
+.ma .m-title{font-weight:300;letter-spacing:.06em;font-size:1.9em}
+.ma .m-kicker{letter-spacing:.35em}.ma .m-card{padding:1em}
+.ma .m-btn{border-color:#cfcbc2}.ma .m-cta{background:#4c4842}
+.ma .m-dot{border-radius:50%;background:#b7b0a3}
+.pastel{--bg:#fff7fa;--fg:#6d5b70;--muted:#a58fa8;--accent:#ff9ec4;--line:#ffd9e7;--r:18px;font-family:'M PLUS Rounded 1c','Noto Sans JP',sans-serif}
+.pastel .m-card,.pastel .m-side,.pastel .m-chart,.pastel .m-list{border:2px dotted #ffc9de}
+.pastel .m-hero-visual{background:radial-gradient(circle at 30% 30%,#ffd6e8,#cdeaff)}
+.pastel .m-title::after{content:" ✿";color:#ff9ec4;font-size:.55em}
+.pastel .m-btn{border-radius:999px;border:2px solid #ffc9de;color:#e0699a}
+.pastel .m-cta{border-radius:999px;background:#bde8d4;color:#4c7a63}.pastel .m-dot{border-radius:50%;background:#bde8d4}
+.wafu{--bg:#f7f3ea;--fg:#2b2620;--muted:#8a8073;--accent:#b3402a;--card:#fdfbf5;--line:#e0d8c6;--r:0px}
+.wafu .m-title,.wafu .m-brand,.wafu .m-kicker{font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Sans JP',serif}
+.wafu .m-title{font-weight:500;letter-spacing:.14em}.wafu .m-brand,.wafu .m-kicker{letter-spacing:.3em}
+.wafu .m-hero-visual{border-radius:50%;background:radial-gradient(circle at 40% 35%,#d9b8a2,#b3402a)}
+.wafu .m-btn,.wafu .m-cta{border-radius:0}.wafu .m-dot{border-radius:50%}
+.handdrawn{--bg:#fdf9f0;--fg:#3d3830;--muted:#8b8375;--accent:#f4845f;--card:#fffdf7;--line:#3d3830;--r:12px}
+.handdrawn .m-title{font-family:'Caveat',cursive;font-weight:700;font-size:2.6em}
+.handdrawn .m-brand{font-family:'Caveat',cursive;font-size:1.4em;letter-spacing:0}
+.handdrawn .m-card,.handdrawn .m-side,.handdrawn .m-chart,.handdrawn .m-list{border:2px dashed #3d3830;border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+.handdrawn .m-hero-visual{border:2px solid #3d3830;border-radius:225px 15px 255px 15px/15px 255px 15px 225px;background:radial-gradient(circle at 35% 40%,#ffe3a3,#f4845f)}
+.handdrawn .m-btn{border:2px solid #3d3830;border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+.handdrawn .m-btn.primary{background:#f4845f;color:#fff}
+.handdrawn .m-cta{background:#7fb069;border:2px solid #3d3830;border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+.handdrawn .m-dot{background:#7fb069;border:2px solid #3d3830;border-radius:50%}
+.nordic{--bg:#f2f4f3;--fg:#2e3a37;--muted:#7c8a85;--accent:#5f8d7e;--line:#e0e6e3;--r:14px;--visual:linear-gradient(160deg,#dfe8e4,#c9d8d1)}
+.nordic .m-title{font-weight:600}
+.nordic .m-card,.nordic .m-side,.nordic .m-chart,.nordic .m-list{box-shadow:0 2px 8px rgba(46,58,55,.05)}
+.nordic .m-btn,.nordic .m-cta{border-radius:8px}.nordic .m-dot{border-radius:50%;background:#d9a05b}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker">Design Style Catalog</div>
+  <h1>デザインスタイルカタログ <span style="font-size:.5em;color:var(--sub);font-weight:500">— 30スタイル × 3成果物 × 「AI臭さ」脱却 —</span></h1>
+  <p class="lead">スタイルを選ぶとプレビューと、AIにそのまま渡せるプロンプトが表示されます。「AIが作った感」を出さないためのガイドラインもプロンプトに自動で織り込めます。</p>
+  <div class="howto">
+    <div><b><span class="step">1</span>成果物を選ぶ</b>下の大きなカードで選択。プレビューもプロンプトも全て連動します。</div>
+    <div><b><span class="step">2</span>スタイルを選ぶ</b>カードクリックで拡大プレビューとプロンプトを表示。</div>
+    <div><b><span class="step">3</span>情報を埋めてコピー</b>目的・名称を記入。MIX機能で2スタイルの合成も。</div>
+    <div><b><span class="step">4</span>AIに貼る</b>ChatGPT / Claude / Gemini / Cursor 等へ。違和感があれば「調整して」で追撃。</div>
+  </div>
+  <div class="doclabel">STEP 1 ／ 何を作りますか？</div>
+  <div class="docbar" id="seg">
+    <button data-doc="page" class="on"><span class="dico">🏠</span><span><b>ホームページ</b><small>LP / コーポレート / サービス紹介</small></span></button>
+    <button data-doc="app"><span class="dico">📊</span><span><b>Webアプリ</b><small>ダッシュボード / 管理画面 / SaaS</small></span></button>
+    <button data-doc="slide"><span class="dico">📽</span><span><b>スライド</b><small>キーノート / 提案書 / 報告資料</small></span></button>
+  </div>
+  <details class="antiwrap" open>
+    <summary>「AIが作った感」を出さないガイドライン <span class="antibadge" id="antiBadge"></span><span class="antihint">チェックした項目は全プロンプトに自動追記されます</span></summary>
+    <div class="anti" id="antiList"></div>
+  </details>
+  <div class="controls">
+    <div class="chips" id="chips"></div>
+    <button class="mixbtn" id="mixOpen">🎨 スタイルMIX</button>
+    <input id="search" type="search" placeholder="🔍 検索">
+  </div>
+</header>
+<main class="grid" id="grid"></main>
+<footer>MIXのコツ：ベース70%＋取り入れ30%が馴染みやすいです。／ 「AI臭さガイド」はONのままがおすすめ。スタイル選びより効きます。</footer>
+</div>
+
+<div class="modal" id="modal">
+  <div class="backdrop" id="backdrop"></div>
+  <div class="mbox">
+    <button class="close" id="closeBtn">✕</button>
+    <div class="mleft">
+      <span class="docbadge" id="docBadge"></span>
+      <div class="pframe" id="pfMock"></div>
+      <div class="note">▲ 選択中の成果物でのプレビュー（イメージ図）</div>
+    </div>
+    <div class="mright">
+      <h2 id="mTitle">—<small id="mEn"></small></h2>
+      <div style="display:flex;gap:6px;flex-wrap:wrap" id="mTags"></div>
+      <p class="mdesc" id="mDesc"></p>
+      <p class="ainote" id="mAi"></p>
+      <div class="fields">
+        <label><span id="lpP"></span><input id="fPurpose"></label>
+        <label><span id="lpB"></span><input id="fBrand"></label>
+      </div>
+      <textarea class="pbox" id="prompt" spellcheck="false"></textarea>
+      <button class="copybtn" id="copyBtn">📋 プロンプトをコピー</button>
+      <p class="hint">※ 入力欄を埋めるとプロンプトに自動反映（本文を手編集した場合はそちら優先）。</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="mixModal">
+  <div class="backdrop" id="mixBackdrop"></div>
+  <div class="mbox mixbox">
+    <button class="close" id="mixClose">✕</button>
+    <div class="mright">
+      <div class="mixhead"><h2>🎨 スタイルMIX</h2>
+      <p>「ベーススタイル」に「別スタイルの要素」を20〜30%だけ混ぜ込むプロンプトを生成します。現在の成果物：<b id="mixDocLabel"></b></p></div>
+      <div class="mixgrid">
+        <div class="mixcol"><label>ベース：スタイルA<select id="mixA"></select></label><div class="mixprev" id="prevA"></div></div>
+        <div class="mixplus">＋</div>
+        <div class="mixcol"><label>取り入れ：スタイルB<select id="mixB"></select></label><div class="mixprev" id="prevB"></div></div>
+      </div>
+      <fieldset class="mixels"><legend>Bから取り入れる要素</legend>
+        <label><input type="checkbox" value="配色" checked>配色</label>
+        <label><input type="checkbox" value="タイポグラフィ">タイポグラフィ</label>
+        <label><input type="checkbox" value="レイアウト">レイアウト</label>
+        <label><input type="checkbox" value="装飾" checked>装飾・質感</label>
+        <label><input type="checkbox" value="ムード">ムード</label>
+      </fieldset>
+      <div class="fields">
+        <label><span id="lpP2"></span><input id="fPurpose2"></label>
+        <label><span id="lpB2"></span><input id="fBrand2"></label>
+      </div>
+      <textarea class="pbox" id="mixPrompt" spellcheck="false"></textarea>
+      <button class="copybtn" id="mixCopy">📋 MIXプロンプトをコピー</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CAT_LABEL={minimal:'ミニマル',trend:'トレンド',bold:'ボールド',premium:'上質',natural:'ナチュラル'};
+const CATS=[['all','すべて'],['minimal','ミニマル'],['trend','トレンド'],['bold','ボールド'],['premium','上質'],['natural','ナチュラル']];
+const DOC={
+ page:{label:'ホームページ',sec:'ページ構成',pL:'サイトの目的',pP:'例：カフェの集客、採用強化',pDef:'【サイトの目的】',bL:'ブランド名',bP:'例：株式会社サンプル',bDef:'【ブランド名】',
+  head:(b,p,s)=>`「${s}」スタイルで、${b}の${p}のためのトップページを1枚のHTMLで作成してください。`,
+  headMix:(b,p)=>`デザインスタイルをMIXして、${b}の${p}のためのトップページを1枚のHTMLで作成してください。`,
+  structure:'ヘッダー（ロゴ＋ナビ＋CTA）→ メインビジュアル（大きな見出し＋サブコピー＋ボタン）→ 特徴紹介（3カード）→ About → お問い合わせ → フッター',
+  out:['HTML＋CSSを1ファイルで（必要ならJSも可）','レスポンシブ対応（スマホでも崩れない）','写真はプレースホルダー（色面・グラデーション）で可']},
+ app:{label:'Webアプリ',sec:'画面構成',pL:'アプリの目的・できること',pP:'例：売上管理と顧客一覧',pDef:'【アプリの目的】',bL:'プロダクト・サービス名',bP:'例：SalesVision',bDef:'【プロダクト名】',
+  head:(b,p,s)=>`「${s}」スタイルのWebアプリ（ダッシュボード）UIを、${b}（${p}）用に1ファイルHTMLで作成してください。`,
+  headMix:(b,p)=>`デザインスタイルをMIXしたWebアプリ（ダッシュボード）UIを、${b}（${p}）用に1ファイルHTMLで作成してください。`,
+  structure:'アプリシェル（左サイドバーnav＋トップバー）→ メイン画面：統計カード×4・チャートパネル・テーブル/リストパネル → サブ：設定/詳細画面（任意）',
+  out:['HTML＋CSS＋JSを1ファイルで','ナビ切替は見せかけのみで可','チャート・テーブルはダミーデータでよい','デスクトップファースト（幅1280px想定）']},
+ slide:{label:'スライド',sec:'スライド構成',pL:'発表の目的・シーン',pP:'例：新製品発表、社内定例報告',pDef:'【発表の目的】',bL:'発表者・組織名',bP:'例：株式会社サンプル 田中',bDef:'【発表者名】',
+  head:(b,p,s)=>`「${s}」スタイルのスライド資料を、${b}の「${p}」用に1ファイルHTML（16:9）で作成してください。`,
+  headMix:(b,p)=>`デザインスタイルをMIXしたスライド資料を、${b}の「${p}」用に1ファイルHTML（16:9）で作成してください。`,
+  structure:'表紙 → アジェンダ → セクション区切り → 本文レイアウト（2カラム／チャート／大きな数字／写真全面）→ まとめ → 裏表紙（計10枚前後）',
+  out:['16:9、1スライド=1セクションで','HTML＋CSSを1ファイルで（矢印キー送りのJS可）','投影想定：高コントラスト・大きめ文字','チャートはCSS/SVGで簡易表現してよい']}};
+const ANTI=[
+ {t:'紫→青のグラデーション＋ガラス風パネルの「とりあえず定番」組み合わせを禁止',on:true},
+ {t:'同じ大きさの特徴カード3枚並びのレイアウトを禁止（サイズ・情報量に差をつける）',on:true},
+ {t:'「革新的なソリューション」「ようこそ」等の汎用コピーを禁止。主題固有の具体的なコピーを書く',on:true},
+ {t:'絵文字をアイコン代わりに使うのを禁止。カスタムSVGアイコンまたはテキストラベルにする',on:true},
+ {t:'全てを中央揃えにせず、意図的な非対称と余白のリズムを作る',on:true},
+ {t:'個性のあるディスプレイ書体＋可読性の高い本文書体のペアを使い、1フォント構成を避ける',on:false},
+ {t:'写真は被写体・光・色調のディレクションを揃えて指定し、素材サイト風の無難な写真を避ける',on:false},
+ {t:'選択範囲の色・フォーカス状態・ホバー表現など「作り込みの痕跡」となる細部を含める',on:false}];
+const STYLES=[
+{id:'minimal',nameJa:'ミニマリズム',nameEn:'Minimalism',cat:'minimal',tags:['モノトーン','余白','hairline'],desc:'余白・タイポグラフィ・細線だけで構成する究極の引き算のデザイン。装飾がない分、写真とコピーの質が問われます。',aiNote:'「テンプレ的なミニマル」に寄りやすい。写真とコピーに具体性を持たせ、わずかな非対称を。',
+prompt:'■ デザイン方針\n・配色：モノトーン（白背景 #FFFFFF／文字 #111111／補足文字 #888888）。アクセントカラーは1色だけを極めて控えめに。\n・フォント：サンセリフ（Inter／Helvetica系）。見出しは太め・マイナス字間、本文はレギュラー。\n・レイアウト：余白を贅沢に取り、グリッドに整列。影・グラデーション・角丸は使わず、ヘアライン（1px）と余白だけで区切る。\n・写真：低彩度で余白の多いシンプルなものを大きく配置。\n・印象：静か、知的、上質。「無いこと」でブランドを語る。'},
+{id:'swiss',nameJa:'スイススタイル',nameEn:'Swiss Style',cat:'minimal',tags:['グリッド','Helvetica','赤アクセント'],desc:'数学的グリッド・サンセリフ・最少限の色彩による、スイス発の機能美。ポスターのように強いタイポグラフィが特徴。',aiNote:'図形の自動配置的な置き方がAI臭く見える。内容と結びついた意図的な配置を。',
+prompt:'■ デザイン方針\n・配色：白背景・黒テキスト、アクセントは赤（#E3000F）1色のみ。\n・フォント：グロテスク系サンセリフ。見出しは大振り・太め・大文字、字間をタイトに。\n・レイアウト：数学的なグリッドと強い左揃え。見出しと本文で極端なサイズ差。「01 / 02」のようなナンバリングを活用。\n・装飾：写真は使わず、幾何学図形（円・矩形・太細のルール線）をデザイン要素に。\n・印象：機能的、クール、ポスター的。'},
+{id:'corporate',nameJa:'コーポレートクリーン',nameEn:'Corporate Clean',cat:'minimal',tags:['ブルー','信頼感','BtoB'],desc:'企業サイトの王道。整理されたレイアウトと爽やかな青系配色で、信頼感と親しみやすさを両立させます。',aiNote:'最もAI臭が出やすいスタイル。独自カラーと写真ディレクション、等幅3カード回避で差別化。',
+prompt:'■ デザイン方針\n・配色：明るいグレーブルーの背景（#F4F7FB）＋白カード、メインカラーは青（#1F5EFF）、文字はダークネイビーグレー。\n・フォント：クリーンなサンセリフ（Noto Sans JP／Inter）。日本語可読性重視。\n・レイアウト：柔らかいシャドウ・角丸8〜12pxのカード。左右対称で秩序あるセクション構成。\n・印象：信頼感、清潔、安心。BtoB・士業・メーカー向けの王道。'},
+{id:'bigtype',nameJa:'ビッグタイプ・モノ',nameEn:'Big Type',cat:'minimal',tags:['巨大文字','モノクロ','ハイライト'],desc:'巨大なタイポグラフィを主役にするデザイン。モノクロ＋ハイライト1色の、最も大胆な引き算。',aiNote:'コピーが汎用的だと一気にAI臭。見出しは必ずブランド自身の言葉で。',
+prompt:'■ デザイン方針\n・配色：白背景、ほぼ黒の文字、ハイライトイエロー（#FFE600）を1語だけに。\n・フォント：極太サンセリフをマイナス字間で。見出しは画面を支配するサイズ（8〜14vw）。\n・レイアウト：見出しでファーストビューを埋め、補足テキストとCTAは極小。写真は極小か無し。\n・装飾：ほぼ無し。下線ハイライトとヘアラインのみ。\n・印象：力強い、モダン、タイプドリブン。ポートフォリオ・エージェンシー向け。'},
+{id:'glass',nameJa:'ガラスモーフィズム',nameEn:'Glassmorphism',cat:'trend',tags:['半透明','ブラー','グラデーション'],desc:'半透明のガラスパネルにぼかしを効かせたモダンなスタイル。背景のグラデーションが奥行きを生みます。',aiNote:'AI臭の代名詞。使用箇所を限定し、独自グラデーション色と実写真の組合せで。',
+prompt:'■ デザイン方針\n・配色：紫×青×ピンクの鮮やかなグラデーション背景（大きなぼかし光スポット）、テキストは白。\n・効果：半透明カード＋backdrop-filter: blur(10〜20px)。ボーダー rgba(255,255,255,.25)、角丸16〜24px。\n・レイアウト：背景の上にガラスパネルを浮かべて奥行きを作る。\n・フォント：幾何学サンセリフ（Space Grotesk系）。\n・印象：未来的、透明感、クリーン。'},
+{id:'neumorph',nameJa:'ニューモーフィズム',nameEn:'Neumorphism',cat:'trend',tags:['柔らか立体','同系色','シャドウ'],desc:'背景と同系色の要素を柔らかな双面シャドウで“押し出した”ような、触覚的なソフトUI表現。',aiNote:'均一な柔らか影がテンプレ感を呼ぶ。情報の強弱をはっきり付けて。',
+prompt:'■ デザイン方針\n・配色：ライトグレーブルーの単色（#E4E9F0）。背景と要素を同じ色に。\n・効果：柔らかな二つの影（右下に暗い影＋左上に明るい影）で押し出された立体感。押下はinset。角丸16px以上。\n・フォント：角の丸い柔らかいサンセリフ、テキストは低コントラスト（#5A6478）。\n・印象：柔らかい、触覚的、静か。\n・注意：ボタンとテキストの視認性（コントラスト）は確保する。'},
+{id:'bento',nameJa:'ベントーグリッド',nameEn:'Bento Grid',cat:'trend',tags:['パネル配置','Apple風','角丸'],desc:'お弁当箱のように角丸パネルを敷き詰めるレイアウト。Appleが採用し、情報を楽しく整理して見せられます。',aiNote:'均等パネルの羅列に寄りやすい。サイズと情報密度で強弱を。',
+prompt:'■ デザイン方針\n・レイアウト：ページ全体をお弁当箱のように角丸長方形パネルで区切る。パネルは大小さまざま（2×1、1×1、2×2など）。\n・配色：温かみのあるオフホワイト基調＋アクセントのパネルカラー（オレンジ、クリーム、ライトブルー）。\n・中身：各パネルに数字・統計、アイコン、短い見出しを1つずつ。\n・フォント：幾何学サンセリフ（Space Grotesk系）。\n・印象：親しみやすい、情報が明快、Apple的。',
+structure:'ヘッダー → ヒーローパネル → ベントーグリッド（特徴・数字・画像を大小パネルで混在）→ CTAパネル → フッター'},
+{id:'clay',nameJa:'クレイモーフィズム',nameEn:'Claymorphism',cat:'trend',tags:['パステル','立体','まん丸'],desc:'粘土（クレイ）のようなぷっくりした立体感とパステルカラーの、玩具みたいに可愛いスタイル。',aiNote:'均一パステルは素材感が出やすい。独自イラストとコピーの声色を添えて。',
+prompt:'■ デザイン方針\n・配色：パステルパープル／クリーム基調。\n・効果：ぷっくりした“粘土”のような立体カード。角丸24px以上＋太く柔らかい外シャドウ＋内側ハイライト。\n・フォント：丸ゴシック（M PLUS Rounded 1c系）を太めで。\n・印象：おもちゃ的、かわいい、カジュアル。'},
+{id:'aurora',nameJa:'オーロラグラデーション',nameEn:'Aurora Gradient',cat:'trend',tags:['グラデーション','SaaS風','ビビッド'],desc:'オーロラのように流れるグラデーションが主役。現代的なSaaSプロダクトサイトによく使われます。',aiNote:'グラデーション自体がAI臭温床。独自の色の物語と写真を用意して。',
+prompt:'■ デザイン方針\n・配色：インディゴ→バイオレット→ピンク→オレンジへ流れるオーロラグラデーションを全面に。テキストは白。\n・効果：大きく柔らかくぼかした色斑、グラデーションボタン、ほのかなグロー。\n・レイアウト：中央揃えヒーロー＋SaaS風のセクション構成。\n・フォント：モダンサンセリフ、見出しは大きく太く。\n・印象：現代的、テック、エネルギッシュ。'},
+{id:'y2k',nameJa:'Y2K',nameEn:'Y2K',cat:'trend',tags:['クローム','ピル型','2000年代'],desc:'2000年代初頭のカルチャーがモチーフ。クローム質感・ピル型・星モチーフのポップな未来懐古。',aiNote:'モチーフの寄せ集めになりやすい。時代考証的な細部まで詰めて。',
+prompt:'■ デザイン方針\n・配色：ベビーブルー×ピンク×クロームシルバー。\n・効果：メタリックなクロームグラデーションの文字、ピル型（角丸999px）、星（✦）やバブルのモチーフ。\n・フォント：丸みのある幾何学サンセリフをゆったりめに。\n・印象：2000年代初頭のポップさ、未来懐古。'},
+{id:'iso',nameJa:'アイソメトリック3D',nameEn:'Isometric 3D',cat:'trend',tags:['等角投影','3Dイラスト','SaaS'],desc:'浮遊する等角投影（アイソメトリック）3Dイラストを組み合わせる、清潔感のあるテック系スタイル。',aiNote:'ストック3D素材感が強い。独自カラーのイラスト指定が望ましい。',
+prompt:'■ デザイン方針\n・配色：明るいラベンダーグレー背景、ブルー→パープルのグラデーション（#5B5FE9→#9A9EF7）をアクセントに。\n・イラスト：アイソメトリック3Dイラスト（キューブ、ビル、ダッシュボード）をメインビジュアルと各セクションに配置。\n・フォント：幾何学サンセリフ（Space Grotesk／Inter）。\n・レイアウト：柔らかい影のカード、角丸14px、軽やかなSaaS風構成。\n・印象：クリーン、立体的、モダンテック。SaaS・スタートアップ向け。'},
+{id:'brutalism',nameJa:'ネオブルータリズム',nameEn:'Neo-Brutalism',cat:'bold',tags:['極太枠線','ハードシャドウ','等幅'],desc:'極太の黒枠線とハードなオフセットシャドウ。あえて“雑で大胆”に見せる、エネルギッシュな表現。',aiNote:'黒枠＋イエローの「テンプレブルータル」に寄りやすい。タイポと余白で勝負して。',
+prompt:'■ デザイン方針\n・配色：クリーム背景＋極太の黒枠線（2〜3px）、差し色はビビッドなイエロー／パープル。\n・効果：ハードなオフセットシャドウ（例：4px 4px 0 #000）。角丸・グラデーションは禁止。\n・フォント：等幅（Space Mono系）または極太ゴシック、大文字。\n・レイアウト：あえて“生々しい”不均等さと大胆なタイポ配置。\n・印象：反骨的、遊び心、ハイエネルギー。'},
+{id:'vaporwave',nameJa:'ヴェイパーウェイヴ',nameEn:'Vaporwave',cat:'bold',tags:['ネオン','80s','レトロテック'],desc:'ネオンピンク×シアン、レトログリッドやグロー。80年代レトロフューチャーなサイバー美学。',aiNote:'ありきたりネオンに寄りやすい。オリジナルのモチーフとタイポを。',
+prompt:'■ デザイン方針\n・配色：ダークパープル背景＋ネオンピンク（#FF5CE1）×シアン（#00F5FF）。\n・効果：グラデーションテキスト、ネオングロー、レトロなグリッドの地平線、80年代的モチーフ。\n・フォント：等幅またはレトロテック系。\n・印象：レトロフューチャー、ナイト、サイバー。'},
+{id:'retro',nameJa:'レトロ70s',nameEn:'Retro 70s',cat:'bold',tags:['70年代','アースカラー','セリフ'],desc:'70年代風のテラコッタ・オリーブ・マスタードの配色と、アーチ形状やセリフ書体がノスタルジック。',aiNote:'定番パレット頼みになりやすい。印刷質感や書体など時代考証を詰めて。',
+prompt:'■ デザイン方針\n・配色：70年代パレット（クリーム #F3E9D2、テラコッタオレンジ、オリーブグリーン、マスタード）。\n・フォント：丸みのあるセリフかレトロなディスプレイ書体。\n・装飾：アーチ型の図形、ストライプ模様、粒状ノイズや褪せた質感。\n・印象：ノスタルジック、温かい、親しみやすい。'},
+{id:'tech',nameJa:'テックフューチャリズム',nameEn:'Tech Futurism',cat:'bold',tags:['ダーク','シアン','グリッド'],desc:'ダーク×シアンのグロー×グリッド線。AI・開発ツール・SaaSの最先端感を演出するデザイン。',aiNote:'ダーク＋シアングローの均一な表現に寄りやすい。データ見せとタイポで差別化。',
+prompt:'■ デザイン方針\n・配色：深い紺黒背景（#060A12）＋シアン（#22D3EE）のアクセント。\n・効果：細いグリッドライン、グロー、clip-pathによるカットコーナーのパネル。\n・フォント：テック系サンセリフ（Space Grotesk）＋数字は等幅。\n・レイアウト：ダッシュボード的な密度感でスペックや数値を見せる。\n・印象：最先端、精密、信頼。AI・開発ツール向け。'},
+{id:'memphis',nameJa:'メンフィス',nameEn:'Memphis',cat:'bold',tags:['幾何学模様','原色','80s'],desc:'原色の幾何学模様とウネウネ線を散りばめた80sメンフィス風。ポップで遊び心全開のデザイン。',aiNote:'図形のランダム配置に寄りやすい。意図的な構成と強弱を作って。',
+prompt:'■ デザイン方針\n・配色：クリーム背景にピンク・イエロー・ティール・ブルーの原色を自由に散らす。\n・装飾：幾何学模様（三角・円・ジグザグ・ドット）の組み合わせ、太い黒アウトライン。\n・フォント：幾何学的な太サンセリフ、大きめで遊び心 있게。\n・レイアウト：意図的にズラした配置、エネルギッシュな構成。\n・印象：80sポップ、遊び心、パーティ感。イベント・クリエイティブ向け。'},
+{id:'cyber',nameJa:'サイバーパンク',nameEn:'Cyberpunk',cat:'bold',tags:['ネオン','グリッチ','ナイトシティ'],desc:'黒いナイトシティ×ネオンイエロー／マゼンタ／シアン。グリッチと角ばったパネルのSF感。',aiNote:'ネオン定番表現に寄りやすい。言葉遣いや細部で世界観を構築して。',
+prompt:'■ デザイン方針\n・配色：ほぼ黒の背景（#0A0A0D）、ネオンイエロー（#FCEE0A）、マゼンタ（#FF008C）、シアン（#00E5FF）。\n・効果：グリッチ風テキスト（RGBズレのシャドウ）、角ばったclip-pathパネル、スキャンライン／グリッド背景、ネオングロー。\n・フォント：等幅＋太字大文字見出し。\n・レイアウト：HUD／ダッシュボード的な高密度さ、斜めカットの形状。\n・印象：ナイトシティ、SF、高揚感。ゲーム・音楽・テックイベント向け。'},
+{id:'pixel',nameJa:'ピクセル／8bit',nameEn:'Pixel 8-bit',cat:'bold',tags:['レトロゲーム','ドット','ビットマップ'],desc:'レトロゲーム機風の8bit美学。ドット柄、硬いピクセル枠、ゲームパレットの配色。',aiNote:'均一なドット絵に寄りやすい。パレットとグリッドの規律を詰めて。',
+prompt:'■ デザイン方針\n・配色：ダークネイビー背景（#1A1C2C）、レトロゲームパレット（グリーン #38B764、オレンジ、レッド、ライトブルー）。\n・フォント：見出しはピクセル／ビットマップ系（Press Start 2P等）、本文は等幅。\n・装飾：ピクセル化したボーダー、階段状box-shadow、ドット柄背景、8bitアイコン。角丸・アンチエイリアス感は無し。\n・レイアウト：ゲームのメニュー画面のような構成（ステータス、アイコン、枠）。\n・印象：レトロゲーム、楽しい、ノスタルジー。'},
+{id:'maximal',nameJa:'マキシマリズム',nameEn:'Maximalism',cat:'bold',tags:['ジュエルトーン','柄ミックス','過飾'],desc:'ミニマルの真逆、“more is more”。ジュエルトーン・柄の重ね・書体ミックスの華やかな過飾スタイル。',aiNote:'混沌とした詰め込みに寄りやすい。エディトリアルな均衡感を。',
+prompt:'■ デザイン方針\n・配色：ディープマゼンタ、ゴールド、エメラルド、コバルトなどジュエルトーンを重ねる。\n・装飾：ストライプ・ドット・花柄など複数の柄をミックス、オーナメント、太い色面、写真を重ねる。\n・フォント：装飾的なディスプレイセリフと太サンセリフを混在（2〜3書体まで）。\n・レイアウト：隅々まで埋める高密度・高彩度。ただし色のバランスは保つ。\n・印象：華美、折衷、ファッショナブル。ファッション・アート・イベント向け。'},
+{id:'bauhaus',nameJa:'バウハウス',nameEn:'Bauhaus',cat:'bold',tags:['三原色','幾何学','1919'],desc:'1919年設立の造形学校が発祥。三原色と円・三角・矩形だけで構成する、幾何学が踊る機能美。',aiNote:'三原色のただ置きに寄りやすい。図形の意味とグリッド比率を詰めて。',
+prompt:'■ デザイン方針\n・配色：オフホワイト背景に三原色＝赤（#E3000F）・青（#0057B8）・黄（#F2B705）＋黒のライン。グラデーションも影も使わない。\n・形状：円・三角・矩形のみで構成。写真も円形に抜くなど要素を幾何学化する。\n・フォント：幾何学サンセリフ（Futura／Space Grotesk系）。大文字＋タイトな字間。\n・レイアウト：非対称だがバランスの取れたグリッド。ルール線と色面を構造として使う。\n・印象：デザインスクール的古典、機能的かつ遊び心。アート・教育・クリエイティブ系向け。'},
+{id:'terminal',nameJa:'ターミナル／CLI',nameEn:'Terminal / CLI',cat:'bold',tags:['等幅','蛍光緑','スキャンライン'],desc:'黒地に蛍光緑のコンソール風美学。開発者ポートフォリオやツール系に刺さる、ギークな遊び心。',aiNote:'黒×緑の均一表現に寄りやすい。タイピング演出などインタラクションで詰めて。',
+prompt:'■ デザイン方針\n・配色：ほぼ黒の背景（#0D1117）に蛍光グリーン（#4AF626）。補足文字はディムグリーン。スキャンライン表現。\n・フォント：すべて等幅（Space Mono／JetBrains Mono系）。見出しも等幅太字。記号「$」「>」を装飾に使う。\n・装飾：ターミナル窓風のフレーム（タイトルバー＋3点ドット）、点滅カーソル、ASCIIアート的な飾り。\n・レイアウト：文書的な縦流れ＋ボックス型パネル。高密度だが整然と。\n・印象：ハッカー的、ギークな遊び心。開発者ポートフォリオ・開発ツール向け。'},
+{id:'darklux',nameJa:'ダークラグジュアリー',nameEn:'Dark Luxury',cat:'premium',tags:['黒×金','セリフ','高級'],desc:'黒×シャンパンゴールドの高級感。ホテル・ジュエリー・サロンなどハイエンドな業種に最適。',aiNote:'黒＋金の均一表現に寄りやすい。写真と余白の“質”がすべて。',
+prompt:'■ デザイン方針\n・配色：漆黒に近い背景（#0B0B0F）、シャンパンゴールド（#C8A24B）、オフホワイトのテキスト。\n・フォント：見出しはセリフ（Playfair Display系）、本文は細身のサンセリフ。\n・装飾：控えめなゴールドのグローと細ライン、低明度のグラデーション。装飾は盛らない。\n・レイアウト：余白を大きく、中央揃えヒーロー。\n・印象：ラグジュアリー、大人、ハイエンド。'},
+{id:'editorial',nameJa:'エディトリアル雑誌風',nameEn:'Editorial',cat:'premium',tags:['雑誌風','セリフ','多段組'],desc:'大きなセリフ見出しと細いルール線、多段組。雑誌のように物語を感じさせる知的なデザイン。',aiNote:'「セリフ=知的」の均一表現に寄りやすい。グリッド設計とコピーライティングを詰めて。',
+prompt:'■ デザイン方針\n・配色：紙のような白（#FBFAF7）＋黒、アクセントに深い赤。\n・フォント：見出しはセリフ（Playfair Display系）を特大、本文は小さめサンセリフ。\n・レイアウト：雑誌的な多段組、細いルール線、イタリックやドロップキャップ、非対称構成。\n・写真：コントラストを抑えた静かな写真を大きく。\n・印象：知的、物語性、上質な雑誌。'},
+{id:'deco',nameJa:'アール・デコ',nameEn:'Art Deco',cat:'premium',tags:['ゴールド線','シンメトリー','1920s'],desc:'1920年代アール・デコ。深緑／黒×金の幾何学模様、大文字セリフ、シンメトリーな豪華さ。',aiNote:'モチーフ均一になりやすい。シンメトリーと書体選定を詰めて。',
+prompt:'■ デザイン方針\n・配色：深緑またはチャコール背景（#12211C）、シャンパンゴールド（#CFA14E）の線とアクセント、アイボリーの文字。\n・フォント：優雅なセリフの大文字・ワイド字間（見出し）、細サンセリフ（本文）。\n・装飾：金の幾何学模様（扇形、サンバースト、二重ライン）、シンメトリーな構成。\n・レイアウト：中央揃え、儀式的、細い枠線で囲む。\n・印象：1920sギャツビー風の豪華、格式、ホテルライク。'},
+{id:'organic',nameJa:'オーガニックナチュラル',nameEn:'Organic Natural',cat:'natural',tags:['アースカラー','有機的曲線','自然'],desc:'アースカラーと不定形な有機的カーブ。カフェ・オーガニック製品・ウェルネスに合う優しい世界観。',aiNote:'ブロブ形の均一使用に寄りやすい。写真とテクスチャを詰めて。',
+prompt:'■ デザイン方針\n・配色：オフホワイト、セージグリーン、テラコッタなどのアースカラー。\n・形状：不完全な円や葉のような有機的カーブ（非対称のborder-radius）、柔らかな曲線のセクション区切り。\n・フォント：セリフの見出し＋柔らかいサンセリフの本文。\n・写真：自然・植物・光のやわらかい写真。\n・印象：優しい、自然体、スローライフ。'},
+{id:'ma',nameJa:'余白（無印風）',nameEn:'Japanese Whitespace',cat:'natural',tags:['余白','細い文字','低彩度'],desc:'極限まで要素を削ぎ落とし、余白そのものをデザインとする日本の美意識。無印良品や北欧テイストに近い静けさ。',aiNote:'「ただスカスカ」な均一表現に寄りやすい。タイポと写真の質で詰めて。',
+prompt:'■ デザイン方針\n・配色：温かみのあるオフホワイト（#FAF9F6）＋グレイッシュブラウンの文字。全て低彩度。\n・フォント：細身のサンセリフ（weight 300）、字間は広め。\n・レイアウト：極限の余白。要素は「少なく・小さく・整えて」。写真は小さく、細いライン。\n・印象：静寂、自然体、主張しない美しさ。日本のライフスタイルブランド向け。'},
+{id:'pastel',nameJa:'パステルカワイイ',nameEn:'Pastel Kawaii',cat:'natural',tags:['パステル','丸み','かわいい'],desc:'ピンク・ミント・ラベンダーのパステルとまん丸のフォルム。スイーツ・サロン・グッズ系の可愛さ全開スタイル。',aiNote:'モチーフ均一になりやすい。コピーの声色で個性を出して。',
+prompt:'■ デザイン方針\n・配色：白地にピンク、ミント、ラベンダーのパステルカラー。\n・形状：丸み（角丸16〜999px）、ドットの縁取り、花や星のモチーフ（✿）。\n・フォント：丸ゴシック（M PLUS Rounded 1c系）をぽってり太めに。\n・印象：かわいい、やさしい、ポップ。スイーツ・サロン・グッズ系向け。'},
+{id:'wafu',nameJa:'和モダン',nameEn:'Wafu Modern',cat:'natural',tags:['明朝体','朱色','禅'],desc:'明朝体・和紙風のオフホワイト・朱色のアクセントでまとめる、日本的な美意識のモダンアレンジ。静けさと品格。',aiNote:'和柄・桜などの定型的な和要素に寄りやすい。余白と書体で“らしさ”を。',
+prompt:'■ デザイン方針\n・配色：和紙のようなオフホワイト（#F7F3EA）、墨色の文字、朱色（#B3402A）のアクセント、低彩度の自然色。\n・フォント：見出しは明朝体（Noto Serif JP等）、本文は細身のゴシック。字間は広め。\n・レイアウト：縦書きのアクセント、ヘアラインの罫線、円相（丸）などのモチーフを1箇所。余白は大きく。\n・写真：静かな低彩度の和素材・自然・工芸の写真。\n・印象：静寂、品格、日本の美。老舗・和菓子・旅館向け。'},
+{id:'handdrawn',nameJa:'手描きイラスト',nameEn:'Hand-drawn',cat:'natural',tags:['落書き','クレヨン','紙質感'],desc:'紙に手描きしたようなクレヨンや落書き、破線のいびつな枠、手書き風フォントの温かいデザイン。',aiNote:'均一な手書きフォント頼みに寄りやすい。実際の手描き要素を混ぜて。',
+prompt:'■ デザイン方針\n・配色：紙のようなクリーム背景（#FDF9F0）、鉛筆風のダークブラウン文字、クレヨン風のオレンジ・グリーン・イエロー。\n・フォント：見出しは手書き風フォント（Caveat／Zen Maru Gothic等）、本文は丸ゴシック。\n・装飾：破線またはヨレたボーダー（非対称border-radius）、落書きイラスト、紙のテクスチャと粒感。\n・形状：直線を避け、すべてゆるい手描き感で。\n・印象：温かい、絵本的、親しみ。カフェ・キッズ・ワークショップ向け。'},
+{id:'nordic',nameJa:'スカンジナビアン・ノルディック',nameEn:'Scandinavian',cat:'natural',tags:['ヒュッゲ','ミュートトーン','機能美'],desc:'北欧風の機能性とやわらかさ。グレーホワイト基調にミュートグリーンとウッドトーンの cozy なデザイン。',aiNote:'ストック写真頼みの均一表現に寄りやすい。独自の写真ディレクションを。',
+prompt:'■ デザイン方針\n・配色：グレーホワイト背景（#F2F4F3）、深いグリーングレーの文字、ミュートセージ（#5F8D7E）とウッドトーンのタンをアクセントに。\n・フォント：機能的でクリーンなサンセリフ（Inter系）、ミディアムウェイト。\n・レイアウト：機能的、やわらかい角丸カード、控えめな影。余白は多いが冷たくしない。\n・写真：やわらかい自然光、インテリア、自然。\n・印象：ヒュッゲ、自然体、機能美。インテリア・ライフスタイル向け。'}
+];
+/* ---------- mocks ---------- */
+function mockPage(s){return `<div class="mock ${s.id}" aria-hidden="true">
+<div class="m-top"><span class="m-brand">AURORA</span>
+<div class="m-menu"><span>About</span><span>Works</span><span>News</span><span>Contact</span></div>
+<span class="m-cta">Contact</span></div>
+<div class="m-hero"><div class="m-hero-text">
+<span class="m-kicker">Design Studio</span>
+<div class="m-title">Make it<br><em>Beautiful.</em></div>
+<p class="m-sub">シンプルで、わかりやすく。想いが伝わるデザインを。</p>
+<div class="m-actions"><span class="m-btn primary">View Works</span><span class="m-btn">詳しく見る</span></div>
+</div><div class="m-hero-visual"></div></div>
+<div class="m-cards">
+<div class="m-card"><span class="m-dot"></span><b>Concept</b><span>ブランドの本質を引き出す設計。</span></div>
+<div class="m-card"><span class="m-dot"></span><b>Design</b><span>配色・余白・書体まで丁寧に。</span></div>
+<div class="m-card"><span class="m-dot"></span><b>Develop</b><span>速くて崩れないレスポンシブ実装。</span></div>
+</div></div>`;}
+function mockApp(s){return `<div class="mock m-app ${s.id}" aria-hidden="true">
+<div class="m-appbody">
+<div class="m-side"><span class="m-brand">AURORA</span>
+<span class="m-snav on">ダッシュボード</span><span class="m-snav">解析</span><span class="m-snav">顧客</span><span class="m-snav">設定</span>
+<span class="m-snav" style="margin-top:auto">ヘルプ</span></div>
+<div class="m-main">
+<div class="m-top"><span class="m-kicker">Dashboard — 今月の概要</span><span class="m-cta">エクスポート</span></div>
+<div class="m-stats">
+<div class="m-card m-stat"><span>売上</span><b>¥1,240,000</b></div>
+<div class="m-card m-stat"><span>新規顧客</span><b>386</b></div>
+<div class="m-card m-stat"><span>継続率</span><b>42%</b></div>
+<div class="m-card m-stat"><span>満足度</span><b>4.8</b></div></div>
+<div class="m-row">
+<div class="m-card m-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="m-card m-list"><i></i><i></i><i></i><i></i></div></div>
+</div></div></div>`;}
+function mockSlide(s){return `<div class="mock m-slide ${s.id}" aria-hidden="true">
+<div class="m-slidetop"><span class="m-kicker">Keynote 2025</span><span class="m-menu"><span>01 / 12</span></span></div>
+<div class="m-hero-visual m-slidedeco"></div>
+<div class="m-title">Make it<br><em>Beautiful.</em></div>
+<p class="m-sub">AURORA Studio — 山田 太郎</p>
+<div class="m-slidefoot"><span>AURORA</span><span>conf.aurora.jp</span></div>
+</div>`;}
+const mockHTML=(s,d)=>d==='app'?mockApp(s):d==='slide'?mockSlide(s):mockPage(s);
+/* ---------- state ---------- */
+let docType='page',curCat='all',curQ='',curStyle=null,manualEdit=false;
+const $=id=>document.getElementById(id);
+const antiLines=()=>ANTI.filter(a=>a.on).map(a=>'・'+a.t);
+const antiBlock=()=>{const l=antiLines();return l.length?`\n\n■ 「AIが作った感」を出さないための必須要件\n${l.join('\n')}`:'';};
+function buildPrompt(s){const d=DOC[docType];
+ const p=$('fPurpose').value.trim()||d.pDef,b=$('fBrand').value.trim()||d.bDef;
+ return `${d.head(b,p,`${s.nameJa}（${s.nameEn}）`)}\n\n${s.prompt}\n\n■ ${d.sec}\n${(docType==='page'&&s.structure)?s.structure:d.structure}${antiBlock()}\n\n■ 出力条件\n${d.out.map(o=>'・'+o).join('\n')}`;}
+const MIX_EL={'配色':['配色'],'タイポグラフィ':['フォント','書体'],'レイアウト':['レイアウト','構成'],'装飾':['装飾','効果','形状','写真','質感'],'ムード':['印象']};
+function buildMix(){const a=STYLES.find(x=>x.id===$('mixA').value),b=STYLES.find(x=>x.id===$('mixB').value),d=DOC[docType];
+ if(!a||!b)return''; if(a.id===b.id)return'⚠ AとBは異なるスタイルを選んでください。';
+ const p=$('fPurpose2').value.trim()||d.pDef,br=$('fBrand2').value.trim()||d.bDef;
+ const checked=[...document.querySelectorAll('.mixels input:checked')].map(i=>i.value);
+ const bAll=b.prompt.split('\n').filter(l=>l.startsWith('・'));let lines=[];
+ checked.forEach(el=>{const ks=MIX_EL[el]||[];const hit=bAll.filter(l=>ks.some(k=>l.slice(1).split('：')[0].includes(k)));
+  lines.push(...(hit.length?hit:[`・${el}：「${b.nameJa}」らしい雰囲気を取り入れる（${b.desc}）`]));});
+ lines=[...new Set(lines)];
+ return `${d.headMix(br,p)}\n\n■ ベーススタイル：「${a.nameJa}（${a.nameEn}）」\n${a.prompt}\n\n■ 「${b.nameJa}（${b.nameEn}）」から取り入れる要素（20〜30%程度で混ぜる）\n${lines.join('\n')}\n\n■ MIXのコツ\n・レイアウトと余白のリズムはベースAで統一し、Bの要素はアクセントとして使う\n・色や書体が喧嘩する場合は、トーン・彩度を寄せて調和させる\n・装飾はベースの良さを消さない量に留める${antiBlock()}\n\n■ ${d.sec}\n${d.structure}\n\n■ 出力条件\n${d.out.map(o=>'・'+o).join('\n')}`;}
+/* ---------- catalog ---------- */
+const grid=$('grid'),chipsEl=$('chips');
+function renderChips(){chipsEl.innerHTML=CATS.map(([k,l])=>{const n=k==='all'?STYLES.length:STYLES.filter(s=>s.cat===k).length;
+ return `<button class="chip${curCat===k?' on':''}" data-cat="${k}">${l} (${n})</button>`;}).join('');}
+function renderGrid(){const list=STYLES.filter(s=>(curCat==='all'||s.cat===curCat)&&(!curQ||[s.nameJa,s.nameEn,s.desc,...s.tags].join(' ').toLowerCase().includes(curQ)));
+ grid.innerHTML=list.length?list.map(s=>`<div class="card" data-id="${s.id}" tabindex="0" role="button">
+ <div class="thumb">${mockHTML(s,docType)}</div>
+ <div class="cbody"><div class="crow"><h3>${s.nameJa}</h3><span class="cat cat-${s.cat}">${CAT_LABEL[s.cat]}</span></div>
+ <div class="cen">${s.nameEn}</div><p class="cdesc">${s.desc}</p>
+ <div class="tags">${s.tags.map(t=>`<span>#${t}</span>`).join('')}</div></div></div>`).join(''):'<div class="empty">該当するスタイルが見つかりませんでした</div>';}
+chipsEl.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;curCat=b.dataset.cat;renderChips();renderGrid();});
+$('search').addEventListener('input',e=>{curQ=e.target.value.trim().toLowerCase();renderGrid();});
+/* ---------- anti ---------- */
+function renderAnti(){$('antiList').innerHTML=ANTI.map((a,i)=>`<label><input type="checkbox" data-i="${i}" ${a.on?'checked':''}>${a.t}</label>`).join('');
+ $('antiBadge').textContent=`${ANTI.filter(a=>a.on).length}項目 適用中`;}
+$('antiList').addEventListener('change',e=>{const i=+e.target.dataset.i;ANTI[i].on=e.target.checked;renderAnti();refreshPrompts();});
+/* ---------- modal ---------- */
+function updateFieldLabels(){const d=DOC[docType];
+ $('lpP').textContent=d.pL;$('fPurpose').placeholder=d.pP;$('lpB').textContent=d.bL;$('fBrand').placeholder=d.bP;
+ $('lpP2').textContent=d.pL;$('fPurpose2').placeholder=d.pP;$('lpB2').textContent=d.bL;$('fBrand2').placeholder=d.bP;
+ $('docBadge').textContent='プレビュー：'+d.label;$('mixDocLabel').textContent=d.label;}
+function refreshPrompts(){if($('modal').classList.contains('open')&&curStyle&&!manualEdit)$('prompt').value=buildPrompt(curStyle);
+ if($('mixModal').classList.contains('open'))$('mixPrompt').value=buildMix();}
+function openModal(id){curStyle=STYLES.find(s=>s.id===id);if(!curStyle)return;manualEdit=false;
+ $('pfMock').innerHTML=mockHTML(curStyle,docType);
+ $('mTitle').innerHTML=`${curStyle.nameJa}<small>${curStyle.nameEn} ／ ${CAT_LABEL[curStyle.cat]}</small>`;
+ $('mDesc').textContent=curStyle.desc;
+ $('mAi').textContent='⚠ AI臭さ注意：'+curStyle.aiNote;
+ $('mTags').innerHTML=curStyle.tags.map(t=>`<span class="cat cat-${curStyle.cat}">#${t}</span>`).join('');
+ $('prompt').value=buildPrompt(curStyle);
+ $('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){$('modal').classList.remove('open');document.body.style.overflow='';}
+grid.addEventListener('click',e=>{const c=e.target.closest('.card');if(c)openModal(c.dataset.id);});
+grid.addEventListener('keydown',e=>{if(e.key==='Enter'){const c=e.target.closest('.card');if(c)openModal(c.dataset.id);}});
+$('closeBtn').addEventListener('click',closeModal);$('backdrop').addEventListener('click',closeModal);
+['fPurpose','fBrand'].forEach(id=>$(id).addEventListener('input',()=>{if(curStyle&&!manualEdit)$('prompt').value=buildPrompt(curStyle);}));
+$('prompt').addEventListener('input',()=>{manualEdit=true;});
+async function copy(t,btn,label){try{await navigator.clipboard.writeText(t);}catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}
+ const old=btn.textContent;btn.textContent='✓ '+label;btn.classList.add('done');setTimeout(()=>{btn.textContent=old;btn.classList.remove('done');},1600);}
+$('copyBtn').addEventListener('click',function(){copy($('prompt').value,this,'コピーしました！');});
+/* ---------- doc tabs ---------- */
+function refreshCopyLabels(){$('copyBtn').textContent=`📋 プロンプトをコピー（${DOC[docType].label}用）`;$('mixCopy').textContent=`📋 MIXプロンプトをコピー（${DOC[docType].label}用）`;}
+$('seg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.dataset.doc===docType)return;
+ docType=b.dataset.doc;[...$('seg').children].forEach(x=>x.classList.toggle('on',x===b));
+ updateFieldLabels();renderGrid();refreshCopyLabels();
+ if($('modal').classList.contains('open')&&curStyle){$('pfMock').innerHTML=mockHTML(curStyle,docType);}
+ refreshPrompts();});
+/* ---------- mix ---------- */
+function fillSelects(){const opts=CATS.filter(c=>c[0]!=='all').map(([k,l])=>`<optgroup label="${l}">`+STYLES.filter(s=>s.cat===k).map(s=>`<option value="${s.id}">${s.nameJa}</option>`).join('')+`</optgroup>`).join('');
+ $('mixA').innerHTML=opts;$('mixB').innerHTML=opts;$('mixA').value='minimal';$('mixB').value='glass';}
+function refreshMix(){const a=STYLES.find(x=>x.id===$('mixA').value),b=STYLES.find(x=>x.id===$('mixB').value);
+ if(a)$('prevA').innerHTML=mockHTML(a,docType); if(b)$('prevB').innerHTML=mockHTML(b,docType);
+ $('mixPrompt').value=buildMix();}
+function openMix(){fillSelects();refreshMix();$('mixModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeMix(){$('mixModal').classList.remove('open');document.body.style.overflow='';}
+$('mixOpen').addEventListener('click',openMix);$('mixClose').addEventListener('click',closeMix);$('mixBackdrop').addEventListener('click',closeMix);
+['mixA','mixB'].forEach(id=>$(id).addEventListener('change',refreshMix));
+document.querySelectorAll('.mixels input').forEach(i=>i.addEventListener('change',refreshMix));
+['fPurpose2','fBrand2'].forEach(id=>$(id).addEventListener('input',()=>{$('mixPrompt').value=buildMix();}));
+$('mixCopy').addEventListener('click',function(){copy($('mixPrompt').value,this,'コピーしました！');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeMix();}});
+renderChips();renderGrid();renderAnti();updateFieldLabels();refreshCopyLabels();
+</script>
+</body>
+</html>
