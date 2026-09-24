@@ -14,7 +14,9 @@
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter','Noto Sans JP',sans-serif;line-height:1.6}
 .wrap{max-width:1200px;margin:0 auto;padding:40px 20px 80px}
 header .kicker{font-size:12px;letter-spacing:.25em;color:var(--acc);font-weight:700;text-transform:uppercase}
-header h1{font-size:clamp(24px,3.6vw,38px);margin:6px 0 10px;letter-spacing:-.02em}
+header h1{font-size:clamp(24px,3.6vw,38px);margin:6px 0 10px;letter-spacing:-.02em;line-height:1.3}
+header h1 .subtitle{font-size:.5em;color:var(--sub);font-weight:500;white-space:nowrap}
+@media(max-width:760px){header h1 .subtitle{display:block;margin-top:4px;font-size:.52em;white-space:normal}}
 header .lead{color:var(--sub);max-width:720px;margin:0 0 10px;font-size:14px}
 .howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:18px 0 6px}
 .howto div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:12.5px}
@@ -75,6 +77,9 @@ header .lead{color:var(--sub);max-width:720px;margin:0 0 10px;font-size:14px}
 @keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .mleft{padding:18px;background:#efece5;border-radius:18px 0 0 18px;display:flex;flex-direction:column;gap:10px}
 .docbadge{align-self:flex-start;background:#17181c;color:#fff;border-radius:999px;font-size:11px;font-weight:700;padding:4px 12px}
+.mdocseg{display:flex;gap:6px;flex-wrap:wrap}
+.mdocseg button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--sub)}
+.mdocseg button.on{background:#17181c;border-color:#17181c;color:#fff;font-weight:700}
 .pframe{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.12)}
 .pframe .mock{--mock-fs:12.5px}
 .mleft .note{font-size:10.5px;color:#8b8779;text-align:center}
@@ -370,7 +375,7 @@ footer{margin-top:46px;font-size:12px;color:var(--sub);text-align:center;line-he
 <div class="wrap">
 <header>
   <div class="kicker">Design Style Catalog</div>
-  <h1>デザインスタイルカタログ <span style="font-size:.5em;color:var(--sub);font-weight:500">— 30スタイル × 3成果物 × 「AI臭さ」脱却 —</span></h1>
+  <h1>デザインスタイルカタログ <span class="subtitle">— 30スタイル × 3成果物 × 「AI臭さ」脱却 —</span></h1>
   <p class="lead">スタイルを選ぶとプレビューと、AIにそのまま渡せるプロンプトが表示されます。「AIが作った感」を出さないためのガイドラインもプロンプトに自動で織り込めます。</p>
   <div class="howto">
     <div><b><span class="step">1</span>成果物を選ぶ</b>下の大きなカードで選択。プレビューもプロンプトも全て連動します。</div>
@@ -404,6 +409,11 @@ footer{margin-top:46px;font-size:12px;color:var(--sub);text-align:center;line-he
     <button class="close" id="closeBtn">✕</button>
     <div class="mleft">
       <span class="docbadge" id="docBadge"></span>
+      <div class="mdocseg" id="modalSeg">
+        <button data-doc="page">🏠 ホームページ</button>
+        <button data-doc="app">📊 Webアプリ</button>
+        <button data-doc="slide">📽 スライド</button>
+      </div>
       <div class="pframe" id="pfMock"></div>
       <div class="note">▲ 選択中の成果物でのプレビュー（イメージ図）</div>
     </div>
@@ -624,8 +634,8 @@ function updateFieldLabels(){const d=DOC[docType];
  $('docBadge').textContent='プレビュー：'+d.label;$('mixDocLabel').textContent=d.label;}
 function refreshPrompts(){if($('modal').classList.contains('open')&&curStyle&&!manualEdit)$('prompt').value=buildPrompt(curStyle);
  if($('mixModal').classList.contains('open'))$('mixPrompt').value=buildMix();}
-function openModal(id){curStyle=STYLES.find(s=>s.id===id);if(!curStyle)return;manualEdit=false;
- $('pfMock').innerHTML=mockHTML(curStyle,docType);
+function openModal(id){curStyle=STYLES.find(s=>s.id===id);if(!curStyle)return;manualEdit=false;syncDocUI();
+  $('pfMock').innerHTML=mockHTML(curStyle,docType);
  $('mTitle').innerHTML=`${curStyle.nameJa}<small>${curStyle.nameEn} ／ ${CAT_LABEL[curStyle.cat]}</small>`;
  $('mDesc').textContent=curStyle.desc;
  $('mAi').textContent='⚠ AI臭さ注意：'+curStyle.aiNote;
@@ -643,11 +653,16 @@ async function copy(t,btn,label){try{await navigator.clipboard.writeText(t);}cat
 $('copyBtn').addEventListener('click',function(){copy($('prompt').value,this,'コピーしました！');});
 /* ---------- doc tabs ---------- */
 function refreshCopyLabels(){$('copyBtn').textContent=`📋 プロンプトをコピー（${DOC[docType].label}用）`;$('mixCopy').textContent=`📋 MIXプロンプトをコピー（${DOC[docType].label}用）`;}
-$('seg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.dataset.doc===docType)return;
- docType=b.dataset.doc;[...$('seg').children].forEach(x=>x.classList.toggle('on',x===b));
- updateFieldLabels();renderGrid();refreshCopyLabels();
- if($('modal').classList.contains('open')&&curStyle){$('pfMock').innerHTML=mockHTML(curStyle,docType);}
- refreshPrompts();});
+function syncDocUI(){[...$('seg').children].forEach(x=>x.classList.toggle('on',x.dataset.doc===docType));
+  [...$('modalSeg').children].forEach(x=>x.classList.toggle('on',x.dataset.doc===docType));}
+function setDocType(nd){if(nd===docType)return;docType=nd;syncDocUI();
+  updateFieldLabels();renderGrid();refreshCopyLabels();
+  if($('modal').classList.contains('open')&&curStyle){$('pfMock').innerHTML=mockHTML(curStyle,docType);}
+  if($('mixModal').classList.contains('open')){const ma=STYLES.find(x=>x.id===$('mixA').value),mb=STYLES.find(x=>x.id===$('mixB').value);
+    if(ma)$('prevA').innerHTML=mockHTML(ma,docType);if(mb)$('prevB').innerHTML=mockHTML(mb,docType);}
+  refreshPrompts();}
+$('seg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;setDocType(b.dataset.doc);});
+$('modalSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;setDocType(b.dataset.doc);});
 /* ---------- mix ---------- */
 function fillSelects(){const opts=CATS.filter(c=>c[0]!=='all').map(([k,l])=>`<optgroup label="${l}">`+STYLES.filter(s=>s.cat===k).map(s=>`<option value="${s.id}">${s.nameJa}</option>`).join('')+`</optgroup>`).join('');
  $('mixA').innerHTML=opts;$('mixB').innerHTML=opts;$('mixA').value='minimal';$('mixB').value='glass';}
@@ -662,7 +677,7 @@ document.querySelectorAll('.mixels input').forEach(i=>i.addEventListener('change
 ['fPurpose2','fBrand2'].forEach(id=>$(id).addEventListener('input',()=>{$('mixPrompt').value=buildMix();}));
 $('mixCopy').addEventListener('click',function(){copy($('mixPrompt').value,this,'コピーしました！');});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeMix();}});
-renderChips();renderGrid();renderAnti();updateFieldLabels();refreshCopyLabels();
+renderChips();renderGrid();renderAnti();updateFieldLabels();refreshCopyLabels();syncDocUI();
 </script>
 </body>
 </html>
