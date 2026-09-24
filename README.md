@@ -73,23 +73,6 @@ AI（ChatGPT / Claude / Gemini / Cursor 等）にデザインを指示するた�
 「ベース：ミニマリズム ＋ 取り入れ：バウハウス（配色・装飾のみ）」のように、
 **2スタイルを20〜30%の比率で混ぜる**プロンプトを生成。取り込む要素（配色/タイポ/レイアウト/装飾/ムード）をチェックで選択できます。
 
-## 実行方法
-
-```bash
-# クローンして開くだけ
-git clone https://github.com/yourname/ai-design-style-catalog.git
-open ai-design-style-catalog/index.html   # macOS / WindowsはダブルクリックでOK
-```
-
-## リポジトリ構成
-
-```
-ai-design-style-catalog/
-├── index.html    # 本体（CSS/JS/データすべてインライン・依存ゼロ）
-├── README.md
-└── LICENSE       # MIT
-```
-
 ## スタイルを追加したい方へ
 
 `index.html` 内の `STYLES` 配列に1オブジェクト追加し、同名のCSSクラスを書くだけです。
